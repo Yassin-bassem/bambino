@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import logoImage from '@/assets/baby-land-logo.jpg';
+import logoImage from '@/assets/bambino-logo.jpg';
 import { useVersion } from '@/contexts/VersionContext';
 import { Checkbox } from '@/components/ui/checkbox';
 import { sendStockAlertTelegram } from '@/lib/telegramAlerts';
@@ -27,14 +27,14 @@ const generateQRCodeBase64 = async (text: string): Promise<string> => {
 };
 
 const getActiveStaffName = (): string | null => {
-  const staffStr = sessionStorage.getItem('babyland_staff');
+  const staffStr = sessionStorage.getItem('bambino_staff') || sessionStorage.getItem('babyland_staff');
   if (staffStr) {
     try {
       const staff = JSON.parse(staffStr);
       if (staff?.name) return staff.name;
     } catch (e) {}
   }
-  if (sessionStorage.getItem('babyland_admin') === 'true') {
+  if (sessionStorage.getItem('bambino_admin') === 'true' || sessionStorage.getItem('babyland_admin') === 'true') {
     return 'الإدارة';
   }
   return null;
@@ -162,7 +162,7 @@ const Orders = () => {
 
     const editOrderId = searchParams.get('editOrder');
     if (editOrderId && orders.length > 0) {
-      const isStaff = sessionStorage.getItem('babyland_staff') || sessionStorage.getItem('babyland_admin');
+      const isStaff = sessionStorage.getItem('bambino_staff') || sessionStorage.getItem('babyland_staff') || sessionStorage.getItem('bambino_admin') || sessionStorage.getItem('babyland_admin');
       if (!isStaff) {
         toast.error('عذراً، فتح الطلب للتعديل متاح فقط للموظفين المصرح لهم');
         return;
@@ -652,23 +652,23 @@ const Orders = () => {
         <title>فاتورة رقم ${order.order_number}</title>
         <style>
           body { font-family: 'Cairo', Arial, sans-serif; padding: 10px; margin: 0; direction: rtl; font-size: 12px; line-height: 1.3; color: #222; }
-          .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #00bfff; padding-bottom: 8px; margin-bottom: 10px; }
+          .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #822c2d; padding-bottom: 8px; margin-bottom: 10px; }
           .header-brand { text-align: right; }
           .header-brand img { max-height: 55px; width: auto; object-fit: contain; }
           .header-title { text-align: center; flex: 1; }
-          .header-title h2 { margin: 0; font-size: 16px; color: #00bfff; font-weight: bold; }
+          .header-title h2 { margin: 0; font-size: 16px; color: #822c2d; font-weight: bold; }
           .header-qr { text-align: center; }
           .header-qr img { width: 75px; height: 75px; border: 1px solid #ccc; padding: 2px; border-radius: 4px; background: #fff; }
-          .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 15px; margin-bottom: 10px; background: #f9fafb; padding: 8px 10px; border-radius: 6px; border: 1px solid #eee; }
+          .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 15px; margin-bottom: 10px; background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada; }
           .info-grid p { margin: 2px 0; font-size: 11px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
           th, td { border: 1px solid #ddd; padding: 4px 6px; text-align: right; font-size: 11px; }
-          th { background: #00bfff; color: white; font-weight: bold; padding: 5px 6px; }
+          th { background: #822c2d; color: white; font-weight: bold; padding: 5px 6px; }
           tr:nth-child(even) { background-color: #fafafa; }
           .totals { text-align: left; margin-top: 6px; font-size: 11px; }
           .totals p { margin: 2px 0; }
-          .totals .total { font-size: 1.15em; font-weight: bold; color: #00bfff; }
-          .footer { margin-top: 12px; padding-top: 8px; border-top: 1px dashed #ccc; text-align: center; font-size: 11px; color: #444; }
+          .totals .total { font-size: 1.15em; font-weight: bold; color: #822c2d; }
+          .footer { margin-top: 15px; padding-top: 10px; border-top: 2px solid #822c2d; font-size: 11px; color: #222; }
           @media print {
             body { padding: 4px; font-size: 11px; }
             .info-grid { background: none; border: 1px solid #ddd; }
@@ -772,7 +772,20 @@ const Orders = () => {
           <p class="total">المطلوب: ${calculatedTotal.toFixed(2)} ج.م</p>
         </div>
         <div class="footer">
-          <p style="margin: 2px 0; font-weight: bold;">أرقام التواصل: 01001608562 | 01093979300</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: right; margin-bottom: 8px;">
+            <div style="background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada;">
+              <p style="margin: 0 0 4px; font-weight: bold; color: #822c2d; font-size: 11.5px;">🏭 الإدارة والمصنع</p>
+              <p style="margin: 2px 0;"><strong>العنوان:</strong> الإسماعيلية، منطقة ٢٤ أكتوبر، قطعة هـ.</p>
+              <p style="margin: 2px 0;"><strong>التليفون والواتساب:</strong> <span dir="ltr">01124744442</span> - <span dir="ltr">01050215553</span></p>
+              <p style="margin: 2px 0;"><strong>التليفون الأرضي:</strong> <span dir="ltr">0643201988</span></p>
+            </div>
+            <div style="background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada;">
+              <p style="margin: 0 0 4px; font-weight: bold; color: #822c2d; font-size: 11.5px;">🏢 معرض القاهرة</p>
+              <p style="margin: 2px 0;"><strong>العنوان:</strong> العبور، الحي التاسع، تقاطع شارع 110 مع شارع 100، مدخل رقم A4.</p>
+              <p style="margin: 2px 0;"><strong>التليفون:</strong> <span dir="ltr">01050215552</span></p>
+            </div>
+          </div>
+          <p style="margin: 4px 0 0; font-weight: bold; color: #822c2d; text-align: center;">شكراً لتعاملكم مع Bambino 🎀</p>
         </div>
       </body>
       </html>
@@ -847,12 +860,12 @@ const Orders = () => {
 
       return `
         <div style="page-break-after: always; padding: 10px;">
-          <div class="header" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #00bfff;padding-bottom:8px;margin-bottom:10px;">
+          <div class="header" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #822c2d;padding-bottom:8px;margin-bottom:10px;">
             <div class="header-brand">
               ${logoBase64 ? `<img src="${logoBase64}" alt="Logo" style="max-height:55px;width:auto;" />` : ''}
             </div>
             <div class="header-title" style="text-align:center;">
-              <h2 style="margin:0;font-size:16px;color:#00bfff;">فاتورة رقم ${order.order_number}</h2>
+              <h2 style="margin:0;font-size:16px;color:#822c2d;">فاتورة رقم ${order.order_number}</h2>
             </div>
             <div class="header-qr" style="text-align:center;">
               ${order.qrCodeBase64 ? `
@@ -860,7 +873,7 @@ const Orders = () => {
               ` : ''}
             </div>
           </div>
-          <div class="info-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 15px;margin-bottom:10px;background:#f9fafb;padding:8px 10px;border-radius:6px;border:1px solid #eee;">
+          <div class="info-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 15px;margin-bottom:10px;background:#faf5f5;padding:8px 10px;border-radius:6px;border:1px solid #ebdada;">
             <div>
               <p style="margin:2px 0;font-size:11px;"><strong>العميل:</strong> ${order.customer_name}</p>
               ${order.shop_name ? `<p style="margin:2px 0;font-size:11px;"><strong>المحل:</strong> ${order.shop_name}</p>` : ''}
@@ -937,10 +950,23 @@ const Orders = () => {
             <p style="margin:2px 0;">الإجمالي الفرعي: ${calculatedSubtotal.toFixed(2)} ج.م</p>
             ${refundTotal > 0 ? `<p style="color:#dc2626;margin:2px 0;">إجمالي الاسترجاع: -${refundTotal.toFixed(2)} ج.م</p>` : ''}
             ${order.deposit_amount > 0 ? `<p style="margin:2px 0;">العربون (${order.deposit_method}): -${order.deposit_amount.toFixed(2)} ج.م</p>` : ''}
-            <p class="total" style="font-size:1.15em;font-weight:bold;color:#00bfff;margin:2px 0;">المطلوب: ${calculatedTotal.toFixed(2)} ج.م</p>
+            <p class="total" style="font-size:1.15em;font-weight:bold;color:#822c2d;margin:2px 0;">المطلوب: ${calculatedTotal.toFixed(2)} ج.م</p>
           </div>
-          <div class="footer" style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed #ccc; text-align: center; font-size: 11px; color: #444;">
-            <p style="margin: 2px 0; font-weight: bold;">أرقام التواصل: 01001608562 | 01093979300</p>
+          <div class="footer" style="margin-top: 15px; padding-top: 10px; border-top: 2px solid #822c2d; font-size: 11px; color: #222;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: right; margin-bottom: 8px;">
+              <div style="background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada;">
+                <p style="margin: 0 0 4px; font-weight: bold; color: #822c2d; font-size: 11.5px;">🏭 الإدارة والمصنع</p>
+                <p style="margin: 2px 0;"><strong>العنوان:</strong> الإسماعيلية، منطقة ٢٤ أكتوبر، قطعة هـ.</p>
+                <p style="margin: 2px 0;"><strong>التليفون والواتساب:</strong> <span dir="ltr">01124744442</span> - <span dir="ltr">01050215553</span></p>
+                <p style="margin: 2px 0;"><strong>التليفون الأرضي:</strong> <span dir="ltr">0643201988</span></p>
+              </div>
+              <div style="background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada;">
+                <p style="margin: 0 0 4px; font-weight: bold; color: #822c2d; font-size: 11.5px;">🏢 معرض القاهرة</p>
+                <p style="margin: 2px 0;"><strong>العنوان:</strong> العبور، الحي التاسع، تقاطع شارع 110 مع شارع 100، مدخل رقم A4.</p>
+                <p style="margin: 2px 0;"><strong>التليفون:</strong> <span dir="ltr">01050215552</span></p>
+              </div>
+            </div>
+            <p style="margin: 4px 0 0; font-weight: bold; color: #822c2d; text-align: center;">شكراً لتعاملكم مع Bambino 🎀</p>
           </div>
         </div>
       `;
@@ -956,7 +982,7 @@ const Orders = () => {
           body { font-family: 'Cairo', Arial, sans-serif; padding: 10px; margin: 0; direction: rtl; font-size: 12px; line-height: 1.3; color: #222; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
           th, td { border: 1px solid #ddd; padding: 4px 6px; text-align: right; font-size: 11px; }
-          th { background: #00bfff; color: white; font-weight: bold; padding: 5px 6px; }
+          th { background: #822c2d; color: white; font-weight: bold; padding: 5px 6px; }
           tr:nth-child(even) { background-color: #fafafa; }
           @media print {
             body { padding: 4px; font-size: 11px; }

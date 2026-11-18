@@ -55,7 +55,7 @@ export const VersionProvider = ({ children }: { children: ReactNode }) => {
     setVersions(allVersions);
 
     // Retrieve from localStorage or default to active row in DB
-    const savedVersionId = localStorage.getItem('babyland_active_version_id');
+    const savedVersionId = localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
     let active = allVersions.find(v => v.id === savedVersionId);
     if (!active) {
       active = allVersions.find(v => v.is_active);
@@ -66,6 +66,7 @@ export const VersionProvider = ({ children }: { children: ReactNode }) => {
     
     if (active) {
       setActiveVersionState(active);
+      localStorage.setItem('bambino_active_version_id', active.id);
       localStorage.setItem('babyland_active_version_id', active.id);
     }
     setLoading(false);
@@ -76,6 +77,7 @@ export const VersionProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const setActiveVersion = async (version: Version) => {
+    localStorage.setItem('bambino_active_version_id', version.id);
     localStorage.setItem('babyland_active_version_id', version.id);
     setActiveVersionState(version);
 
@@ -151,6 +153,7 @@ export const VersionProvider = ({ children }: { children: ReactNode }) => {
     }
 
     toast.success(`تم إنشاء نسخة جديدة: ${name}`);
+    localStorage.setItem('bambino_active_version_id', data.id);
     localStorage.setItem('babyland_active_version_id', data.id);
     setActiveVersionState(data);
     await loadVersions();

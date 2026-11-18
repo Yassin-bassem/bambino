@@ -53,7 +53,7 @@ export const createFullBackupZip = async (): Promise<Blob> => {
   const zip = new JSZip();
   const manifest: any = {
     version: 2, layout: 'by-version', created_at: new Date().toISOString(),
-    app: 'babyland', global: {}, versions: [],
+    app: 'bambino', global: {}, versions: [],
   };
 
   const globalFolder = zip.folder('global')!;
@@ -86,7 +86,7 @@ export const createFullBackupZip = async (): Promise<Blob> => {
   return await zip.generateAsync({ type: 'blob' });
 };
 
-const STORAGE_KEY = 'babyland_last_auto_backup_date';
+const STORAGE_KEY = 'bambino_last_auto_backup_date';
 
 const isDesktop = () => {
   if (typeof window === 'undefined') return false;
@@ -111,7 +111,7 @@ export const maybeAutoDownloadBackup = async () => {
     // Mark first to prevent double-trigger from StrictMode / re-mounts
     localStorage.setItem(STORAGE_KEY, today);
     const blob = await createFullBackupZip();
-    downloadBlob(blob, `babyland-backup-${getTimestamp()}.zip`);
+    downloadBlob(blob, `bambino-backup-${getTimestamp()}.zip`);
   } catch (err) {
     console.error('Auto backup failed:', err);
     // Clear marker so it retries later if it failed

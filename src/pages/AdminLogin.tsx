@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-import babylandLogo from '@/assets/babyland-logo.jpg';
+import bambinoLogo from '@/assets/bambino-logo.jpg';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const AdminLogin = () => {
     setLoading(true);
     
     // Resolve active version ID
-    let activeVersionId = import.meta.env.VITE_ACTIVE_VERSION_ID || localStorage.getItem('babyland_active_version_id');
+    let activeVersionId = import.meta.env.VITE_ACTIVE_VERSION_ID || localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
     if (!activeVersionId) {
       const { data: defaultVersions } = await supabase
         .from('versions')
@@ -29,6 +29,7 @@ const AdminLogin = () => {
         .limit(1);
       if (defaultVersions && defaultVersions.length > 0) {
         activeVersionId = defaultVersions[0].id;
+        localStorage.setItem('bambino_active_version_id', activeVersionId);
         localStorage.setItem('babyland_active_version_id', activeVersionId);
       }
     }
@@ -58,10 +59,12 @@ const AdminLogin = () => {
 
       setLoading(false);
 
-      const expectedPassword = data?.value || 'admin';
+      const expectedPassword = data?.value || '5831';
 
       if (password === expectedPassword) {
+        sessionStorage.setItem('bambino_admin', 'true');
         sessionStorage.setItem('babyland_admin', 'true');
+        sessionStorage.removeItem('bambino_staff');
         sessionStorage.removeItem('babyland_staff');
         toast.success('تم تسجيل الدخول بنجاح');
         navigate('/admin/dashboard');
@@ -100,21 +103,23 @@ const AdminLogin = () => {
       const staffMember = staffData[0];
       const permissions = (staffMember as any).permissions || [];
       
+      const staffInfo = JSON.stringify({
+        id: staffMember.id,
+        name: staffMember.name,
+        permissions,
+      });
+
       if (permissions.length === 0) {
         // No admin permissions - go to store
-        sessionStorage.setItem('babyland_staff', JSON.stringify({
-          id: staffMember.id,
-          name: staffMember.name,
-        }));
+        sessionStorage.setItem('bambino_staff', staffInfo);
+        sessionStorage.setItem('babyland_staff', staffInfo);
         toast.success(`مرحباً ${staffMember.name}`);
         navigate('/');
       } else {
         // Has admin permissions - go to admin panel
-        sessionStorage.setItem('babyland_staff', JSON.stringify({
-          id: staffMember.id,
-          name: staffMember.name,
-          permissions,
-        }));
+        sessionStorage.setItem('bambino_staff', staffInfo);
+        sessionStorage.setItem('babyland_staff', staffInfo);
+        sessionStorage.setItem('bambino_admin', 'staff');
         sessionStorage.setItem('babyland_admin', 'staff');
         toast.success(`مرحباً ${staffMember.name}`);
         navigate('/admin/dashboard');
@@ -127,12 +132,12 @@ const AdminLogin = () => {
       <Card className="w-full max-w-md border-2 border-primary/20 shadow-baby-lg">
         <CardHeader className="text-center space-y-4">
           <img
-            src={babylandLogo}
-            alt="Babyland"
-            className="w-24 h-24 mx-auto rounded-full shadow-baby float-animation"
+            src={bambinoLogo}
+            alt="Bambino"
+            className="w-24 h-24 mx-auto rounded-full shadow-baby float-animation object-cover"
           />
           <CardTitle className="text-2xl gradient-text">
-            {loginMode === 'admin' ? 'لوحة التحكم' : 'تسجيل دخول الموظفين'}
+            {loginMode === 'admin' ? 'لوحة تحكم Bambino' : 'تسجيل دخول الموظفين'}
           </CardTitle>
           <div className="flex gap-2 justify-center">
             <Button

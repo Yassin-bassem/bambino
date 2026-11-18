@@ -29,7 +29,7 @@ interface StockAlert {
 
 const Stats = () => {
   const { activeVersion } = useVersion();
-  const isFullAdmin = sessionStorage.getItem('babyland_admin') === 'true';
+  const isFullAdmin = sessionStorage.getItem('bambino_admin') === 'true' || sessionStorage.getItem('babyland_admin') === 'true';
   const [stats, setStats] = useState<Stats>({
     totalProducts: 0,
     totalOrders: 0,

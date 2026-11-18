@@ -11,7 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import Header from '@/components/Header';
 import ProductImage from '@/components/ProductImage';
-import logoImage from '@/assets/babyland-logo.jpg';
+import logoImage from '@/assets/bambino-logo.jpg';
 import { silentPrintHtml } from '@/lib/silentPrint';
 
 // Old customers data - format: name | shopName | address | phone
@@ -422,16 +422,11 @@ const Checkout = () => {
       return;
     }
 
-    if (!formData.branch) {
-      toast.error('يرجى اختيار الفرع (نيلي أو العبور) قبل إرسال الطلب');
-      return;
-    }
-
     setLoading(true);
 
     try {
       // Get active version from local storage or DB fallback
-      let versionId = localStorage.getItem('babyland_active_version_id');
+      let versionId = localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
       if (!versionId) {
         const { data: activeVersion } = await supabase
           .from('versions')
@@ -486,27 +481,24 @@ const Checkout = () => {
       const orderNumber = nextOrderNum || 1;
 
       // Check if staff member is logged in
-      const staffSession = sessionStorage.getItem('babyland_staff');
+      const staffSession = sessionStorage.getItem('bambino_staff') || sessionStorage.getItem('babyland_staff');
       const staffData = staffSession ? JSON.parse(staffSession) : null;
 
       // Create order
-      const branchNote = `[فرع ${formData.branch}]`;
-      const combinedExtraInfo = extraInfo ? `${branchNote} ${extraInfo}` : branchNote;
-
       const orderPayload: any = {
         customer_id: customerId,
         customer_name: formData.name,
         shop_name: formData.shopName || null,
         phone: formData.phone,
         address: formData.address || null,
-        branch: formData.branch,
+        branch: null,
         delivery_date: formData.deliveryDate || null,
         shipping_company: formData.shippingCompany || null,
         deposit_method: formData.depositMethod || null,
         deposit_amount: formData.depositAmount,
         subtotal: subtotal,
         total: total,
-        extra_info: combinedExtraInfo,
+        extra_info: extraInfo || null,
         version_id: versionId,
         order_number: orderNumber,
         staff_member_id: staffData?.id || null,
@@ -661,20 +653,20 @@ const Checkout = () => {
         <title>فاتورة رقم ${orderData.orderNumber}</title>
         <style>
           body { font-family: 'Cairo', Arial, sans-serif; padding: 10px; margin: 0; direction: rtl; font-size: 12px; line-height: 1.3; color: #222; }
-          .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #00bfff; padding-bottom: 8px; margin-bottom: 10px; }
+          .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #822c2d; padding-bottom: 8px; margin-bottom: 10px; }
           .header-brand img { max-height: 55px; width: auto; object-fit: contain; }
           .header-title { text-align: center; flex: 1; }
-          .header-title h2 { margin: 0; font-size: 16px; color: #00bfff; font-weight: bold; }
-          .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 15px; margin-bottom: 10px; background: #f9fafb; padding: 8px 10px; border-radius: 6px; border: 1px solid #eee; }
+          .header-title h2 { margin: 0; font-size: 16px; color: #822c2d; font-weight: bold; }
+          .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 15px; margin-bottom: 10px; background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada; }
           .info-grid p { margin: 2px 0; font-size: 11px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
           th, td { border: 1px solid #ddd; padding: 4px 6px; text-align: right; font-size: 11px; }
-          th { background: #00bfff; color: white; font-weight: bold; padding: 5px 6px; }
+          th { background: #822c2d; color: white; font-weight: bold; padding: 5px 6px; }
           tr:nth-child(even) { background-color: #fafafa; }
           .totals { text-align: left; margin-top: 6px; font-size: 11px; }
           .totals p { margin: 2px 0; }
-          .totals .total { font-size: 1.15em; font-weight: bold; color: #00bfff; }
-          .footer { margin-top: 12px; padding-top: 8px; border-top: 1px dashed #ccc; text-align: center; font-size: 11px; color: #444; }
+          .totals .total { font-size: 1.15em; font-weight: bold; color: #822c2d; }
+          .footer { margin-top: 15px; padding-top: 10px; border-top: 2px solid #822c2d; font-size: 11px; color: #222; }
           @media print {
             body { padding: 4px; font-size: 11px; }
             .info-grid { background: none; border: 1px solid #ddd; }
@@ -737,7 +729,20 @@ const Checkout = () => {
           <p class="total">المطلوب: ${orderData.total.toFixed(2)} ج.م</p>
         </div>
         <div class="footer">
-          <p style="margin: 2px 0; font-weight: bold;">أرقام التواصل: 01001608562 | 01093979300</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: right; margin-bottom: 8px;">
+            <div style="background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada;">
+              <p style="margin: 0 0 4px; font-weight: bold; color: #822c2d; font-size: 11.5px;">🏭 الإدارة والمصنع</p>
+              <p style="margin: 2px 0;"><strong>العنوان:</strong> الإسماعيلية، منطقة ٢٤ أكتوبر، قطعة هـ.</p>
+              <p style="margin: 2px 0;"><strong>التليفون والواتساب:</strong> <span dir="ltr">01124744442</span> - <span dir="ltr">01050215553</span></p>
+              <p style="margin: 2px 0;"><strong>التليفون الأرضي:</strong> <span dir="ltr">0643201988</span></p>
+            </div>
+            <div style="background: #faf5f5; padding: 8px 10px; border-radius: 6px; border: 1px solid #ebdada;">
+              <p style="margin: 0 0 4px; font-weight: bold; color: #822c2d; font-size: 11.5px;">🏢 معرض القاهرة</p>
+              <p style="margin: 2px 0;"><strong>العنوان:</strong> العبور، الحي التاسع، تقاطع شارع 110 مع شارع 100، مدخل رقم A4.</p>
+              <p style="margin: 2px 0;"><strong>التليفون:</strong> <span dir="ltr">01050215552</span></p>
+            </div>
+          </div>
+          <p style="margin: 4px 0 0; font-weight: bold; color: #822c2d; text-align: center;">شكراً لتعاملكم مع Bambino 🎀</p>
         </div>
       </body>
       </html>
@@ -750,7 +755,7 @@ const Checkout = () => {
   const generateWhatsAppInvoice = () => {
     if (!orderNumber || !orderDetails) return '';
     
-    let invoiceText = `🧸 *Babyland - فاتورة رقم ${orderNumber}*\n\n`;
+    let invoiceText = `🧸 *Bambino - فاتورة رقم ${orderNumber}*\n\n`;
     if (orderDetails.branch) invoiceText += `🏢 *الفرع:* ${orderDetails.branch}\n`;
     invoiceText += `👤 *العميل:* ${orderDetails.customerName}\n`;
     if (orderDetails.shopName) invoiceText += `🏪 *المحل:* ${orderDetails.shopName}\n`;
@@ -779,7 +784,9 @@ const Checkout = () => {
       invoiceText += `💵 *العربون (${methodLabel}):* -${orderDetails.depositAmount.toFixed(2)} ج.م\n`;
     }
     invoiceText += `✅ *المطلوب:* ${orderDetails.total.toFixed(2)} ج.م\n\n`;
-    invoiceText += `شكراً لتعاملكم مع Babyland 🎀`;
+    invoiceText += `🏭 *الإدارة والمصنع:*\nالعنوان: الإسماعيلية، منطقة ٢٤ أكتوبر، قطعة هـ.\nالتليفون والواتساب: 01124744442 - 01050215553\nالتليفون الأرضي: 0643201988\n\n`;
+    invoiceText += `🏢 *معرض القاهرة:*\nالعنوان: العبور، الحي التاسع، تقاطع شارع 110 مع شارع 100، مدخل رقم A4.\nالتليفون: 01050215552\n\n`;
+    invoiceText += `شكراً لتعاملكم مع Bambino 🎀`;
     
     return invoiceText;
   };
@@ -991,44 +998,6 @@ const Checkout = () => {
                     />
                   </div>
                 </div>
-
-                {/* Mandatory Branch Selection */}
-                <div className="pt-2 border-t border-border">
-                  <Label className="font-bold text-base mb-2 flex items-center gap-1">
-                    <span>الفرع</span>
-                    <span className="text-red-500 font-bold">*</span>
-                    <span className="text-xs font-normal text-muted-foreground mr-1">(مطلوب - اختار الفرع المحدد للطلب)</span>
-                  </Label>
-                  <div className="grid grid-cols-2 gap-3 mt-1">
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, branch: 'نيلي' })}
-                      className={`p-3.5 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-2 ${
-                        formData.branch === 'نيلي'
-                          ? 'border-primary bg-primary/10 text-primary shadow-sm scale-[1.02]'
-                          : 'border-border bg-background hover:bg-muted/50 text-foreground'
-                      }`}
-                    >
-                      <Building2 className="h-5 w-5 text-primary" />
-                      <span>فرع نيلي</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setFormData({ ...formData, branch: 'العبور' })}
-                      className={`p-3.5 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-2 ${
-                        formData.branch === 'العبور'
-                          ? 'border-primary bg-primary/10 text-primary shadow-sm scale-[1.02]'
-                          : 'border-border bg-background hover:bg-muted/50 text-foreground'
-                      }`}
-                    >
-                      <Building2 className="h-5 w-5 text-primary" />
-                      <span>فرع العبور</span>
-                    </button>
-                  </div>
-                  {!formData.branch && (
-                    <p className="text-xs text-red-500 mt-1.5 font-medium">⚠️ يجب اختيار الفرع (نيلي أو العبور) لإمكانية تأكيد الطلب</p>
-                  )}
-                </div>
               </CardContent>
             </Card>
 
@@ -1093,26 +1062,26 @@ const Checkout = () => {
 
                 {/* InstaPay Message */}
                 {formData.depositMethod === 'instapay' && (
-                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-800">
-                    <p className="font-bold mb-2">اضغط الرابط لارسال نقود الى</p>
+                  <div className="p-4 bg-primary/5 border border-primary/20 rounded-xl text-foreground">
+                    <p className="font-bold mb-2 text-primary">اضغط الرابط لارسال نقود الى</p>
                     <a 
-                      href="https://ipn.eg/S/basom.1980/instapay/44SGmu" 
+                      href="https://ipn.eg/S/mohamedelsadeq247/instapay/1vwjbc" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-blue-600 underline font-bold block mb-2"
+                      className="text-primary underline font-bold block mb-2 break-all hover:opacity-80"
                     >
-                      https://ipn.eg/S/basom.1980/instapay/44SGmu
+                      https://ipn.eg/S/mohamedelsadeq247/instapay/1vwjbc
                     </a>
-                    <p className="text-sm">basom.1980@instapay</p>
-                    <p className="text-xs text-blue-600 mt-1">Powered by InstaPay</p>
+                    <p className="text-sm font-semibold">mohamedelsadeq247@instapay</p>
+                    <p className="text-xs text-muted-foreground mt-1">Powered by InstaPay</p>
                   </div>
                 )}
 
                 {/* Vodafone Cash Message */}
                 {formData.depositMethod === 'vodafone_cash' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-                    <p className="font-bold mb-2">رقم فودافون كاش:</p>
-                    <p className="text-2xl font-bold" dir="ltr">01001608562</p>
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800">
+                    <p className="font-bold mb-1">رقم فودافون كاش:</p>
+                    <p className="text-2xl font-black tracking-wider text-red-700" dir="ltr">01200766332</p>
                   </div>
                 )}
 

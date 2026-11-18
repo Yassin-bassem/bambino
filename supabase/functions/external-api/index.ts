@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 function generateTextInvoice(order: any, items: any[], subtotal: number, total: number) {
-  let text = `🧸 *فاتورة بيبي لاند | Babyland* 🧸\n`;
+  let text = `🧸 *فاتورة بامبينو | Bambino* 🧸\n`;
   text += `رقم الطلب: #${order.order_number}\n`;
   text += `التاريخ: ${new Date(order.created_at).toLocaleDateString("ar-EG")}\n`;
   text += `━━━━━━━━━━━━━━━━\n`;

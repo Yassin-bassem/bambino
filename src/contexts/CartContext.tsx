@@ -38,13 +38,13 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-const CART_STORAGE_KEY = 'babyland_cart';
-const EXTRA_INFO_STORAGE_KEY = 'babyland_extra_info';
+const CART_STORAGE_KEY = 'bambino_cart';
+const EXTRA_INFO_STORAGE_KEY = 'bambino_extra_info';
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
-      const stored = localStorage.getItem(CART_STORAGE_KEY);
+      const stored = localStorage.getItem(CART_STORAGE_KEY) || localStorage.getItem('babyland_cart');
       return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
@@ -52,7 +52,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
   const [extraInfo, setExtraInfo] = useState<string>(() => {
     try {
-      return localStorage.getItem(EXTRA_INFO_STORAGE_KEY) || '';
+      return localStorage.getItem(EXTRA_INFO_STORAGE_KEY) || localStorage.getItem('babyland_extra_info') || '';
     } catch {
       return '';
     }

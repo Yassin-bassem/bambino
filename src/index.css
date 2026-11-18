@@ -6,101 +6,101 @@
 
 @layer base {
   :root {
-    /* Babyland Brand Colors - Playful Blue & Pink Theme */
-    --background: 200 20% 98%;
-    --foreground: 210 25% 15%;
+    /* Bambino Brand Colors - Elegant Crimson & Burgundy Theme */
+    --background: 0 0% 99%;
+    --foreground: 359 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 25% 15%;
+    --card-foreground: 359 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 25% 15%;
+    --popover-foreground: 359 25% 15%;
 
-    /* Primary - Cyan/Turquoise Blue */
-    --primary: 195 100% 50%;
+    /* Primary - Bambino Logo Burgundy #822c2d */
+    --primary: 359 49% 34%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Soft Pink */
-    --secondary: 330 85% 65%;
+    /* Secondary - Elegant Crimson Rose */
+    --secondary: 355 45% 50%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 200 15% 92%;
-    --muted-foreground: 210 15% 45%;
+    --muted: 359 15% 94%;
+    --muted-foreground: 359 12% 45%;
 
-    /* Accent - Light Pink */
-    --accent: 330 70% 92%;
-    --accent-foreground: 330 85% 45%;
+    /* Accent - Soft Rose Tint */
+    --accent: 359 30% 93%;
+    --accent-foreground: 359 49% 30%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 20% 88%;
-    --input: 200 20% 88%;
-    --ring: 195 100% 50%;
+    --border: 359 15% 88%;
+    --input: 359 15% 88%;
+    --ring: 359 49% 34%;
 
     --radius: 1rem;
 
-    /* Custom Babyland Colors */
-    --baby-blue: 195 100% 50%;
-    --baby-blue-light: 195 100% 95%;
-    --baby-pink: 330 85% 65%;
-    --baby-pink-light: 330 70% 95%;
-    --baby-gradient: linear-gradient(135deg, hsl(195, 100%, 50%) 0%, hsl(330, 85%, 65%) 100%);
-    --baby-gradient-soft: linear-gradient(135deg, hsl(195, 100%, 95%) 0%, hsl(330, 70%, 95%) 100%);
+    /* Custom Bambino Colors */
+    --baby-blue: 359 49% 34%;
+    --baby-blue-light: 359 35% 97%;
+    --baby-pink: 355 45% 50%;
+    --baby-pink-light: 355 30% 96%;
+    --baby-gradient: linear-gradient(135deg, hsl(359, 49%, 34%) 0%, hsl(355, 50%, 46%) 100%);
+    --baby-gradient-soft: linear-gradient(135deg, hsl(359, 35%, 97%) 0%, hsl(355, 30%, 96%) 100%);
 
     /* Shadows */
-    --shadow-sm: 0 2px 8px -2px hsl(195 100% 50% / 0.15);
-    --shadow-md: 0 8px 24px -4px hsl(195 100% 50% / 0.2);
-    --shadow-lg: 0 16px 48px -8px hsl(195 100% 50% / 0.25);
-    --shadow-pink: 0 8px 24px -4px hsl(330 85% 65% / 0.3);
+    --shadow-sm: 0 2px 8px -2px hsl(359 49% 34% / 0.15);
+    --shadow-md: 0 8px 24px -4px hsl(359 49% 34% / 0.2);
+    --shadow-lg: 0 16px 48px -8px hsl(359 49% 34% / 0.25);
+    --shadow-pink: 0 8px 24px -4px hsl(355 45% 50% / 0.25);
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 359 15% 25%;
+    --sidebar-primary: 359 49% 34%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 359 25% 95%;
+    --sidebar-accent-foreground: 359 49% 30%;
+    --sidebar-border: 359 15% 90%;
+    --sidebar-ring: 359 49% 34%;
   }
 
   .dark {
-    --background: 210 25% 8%;
-    --foreground: 200 20% 95%;
+    --background: 359 25% 8%;
+    --foreground: 359 15% 95%;
 
-    --card: 210 25% 12%;
-    --card-foreground: 200 20% 95%;
+    --card: 359 25% 12%;
+    --card-foreground: 359 15% 95%;
 
-    --popover: 210 25% 12%;
-    --popover-foreground: 200 20% 95%;
+    --popover: 359 25% 12%;
+    --popover-foreground: 359 15% 95%;
 
-    --primary: 195 100% 55%;
-    --primary-foreground: 210 25% 8%;
+    --primary: 359 55% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 330 75% 55%;
+    --secondary: 355 45% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 25% 18%;
-    --muted-foreground: 200 15% 60%;
+    --muted: 359 20% 18%;
+    --muted-foreground: 359 15% 65%;
 
-    --accent: 330 60% 25%;
-    --accent-foreground: 330 70% 85%;
+    --accent: 359 30% 25%;
+    --accent-foreground: 359 20% 90%;
 
     --destructive: 0 62% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 25% 20%;
-    --input: 210 25% 20%;
-    --ring: 195 100% 55%;
+    --border: 359 20% 20%;
+    --input: 359 20% 20%;
+    --ring: 359 55% 45%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 359 25% 10%;
+    --sidebar-foreground: 359 15% 90%;
+    --sidebar-primary: 359 55% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 359 20% 18%;
+    --sidebar-accent-foreground: 359 15% 90%;
+    --sidebar-border: 359 20% 18%;
+    --sidebar-ring: 359 55% 45%;
   }
 }
 

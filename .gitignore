@@ -28,3 +28,15 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Temporary & test files
+scratch/
+migration_backups/
+presentation_assets/
+*.pdf
+test_*.png
+test_*.cjs
+create_full_backup.cjs
+create_pdf_presentation.py
+presentation.html
+sync_database_version.cjs
+*.xlsx

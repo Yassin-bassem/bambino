@@ -165,7 +165,7 @@ const Backup = () => {
         version: 2,
         layout: 'by-version',
         created_at: new Date().toISOString(),
-        app: 'babyland',
+        app: 'bambino',
         global: {},
         versions: [],
       };
@@ -217,7 +217,7 @@ const Backup = () => {
       zip.file('manifest.json', JSON.stringify(manifest, null, 2));
       zip.file(
         'README.txt',
-        `Babyland Backup\n` +
+        `Bambino Backup\n` +
           `Created: ${new Date().toISOString()}\n\n` +
           `Structure:\n` +
           `  global/                    Non-versioned tables (app settings, staff)\n` +
@@ -243,7 +243,7 @@ const Backup = () => {
       );
 
       const blob = await zip.generateAsync({ type: 'blob' });
-      downloadBlob(blob, `babyland-backup-${getTimestamp()}.zip`);
+      downloadBlob(blob, `bambino-backup-${getTimestamp()}.zip`);
       toast.success('تم تنزيل النسخة الاحتياطية الكاملة');
     } catch (err: any) {
       toast.error('فشل في إنشاء النسخة الاحتياطية: ' + err.message);
@@ -277,7 +277,7 @@ const Backup = () => {
       zip.file('manifest.json', JSON.stringify(versionManifest, null, 2));
 
       const blob = await zip.generateAsync({ type: 'blob' });
-      downloadBlob(blob, `babyland-version-${safeFolder(v.name)}-${getTimestamp()}.zip`);
+      downloadBlob(blob, `bambino-version-${safeFolder(v.name)}-${getTimestamp()}.zip`);
       toast.success(`تم تنزيل نسخة: ${v.name}`);
     } catch (err: any) {
       toast.error('فشل التنزيل: ' + err.message);
@@ -299,7 +299,7 @@ const Backup = () => {
       zip.file('versions.json', JSON.stringify(buildPayload('versions', allVersions), null, 2));
 
       const blob = await zip.generateAsync({ type: 'blob' });
-      downloadBlob(blob, `babyland-global-${getTimestamp()}.zip`);
+      downloadBlob(blob, `bambino-global-${getTimestamp()}.zip`);
       toast.success('تم تنزيل البيانات العامة');
     } catch (err: any) {
       toast.error('فشل التنزيل: ' + err.message);

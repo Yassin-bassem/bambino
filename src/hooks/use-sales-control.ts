@@ -78,7 +78,7 @@ export const useSalesControl = (): SalesControlSettings => {
     let cancelled = false;
 
     const load = async () => {
-      const activeVersionId = localStorage.getItem('babyland_active_version_id');
+      const activeVersionId = localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
       let query = supabase
         .from('app_settings')
         .select('value')
@@ -129,7 +129,7 @@ export const useSalesControl = (): SalesControlSettings => {
  * Fetch settings imperatively (for one-shot checks like QR scan).
  */
 export const fetchSalesControl = async (): Promise<SalesControlSettings> => {
-  const activeVersionId = localStorage.getItem('babyland_active_version_id');
+  const activeVersionId = localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
   let query = supabase
     .from('app_settings')
     .select('value')

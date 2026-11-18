@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Save, ArrowRight, Plus, Trash2, Undo2, CheckCircle2, User, Lock, KeyRound, Eye, EyeOff } from 'lucide-react';
-import logoImage from '@/assets/baby-land-logo.jpg';
+import logoImage from '@/assets/bambino-logo.jpg';
 
 interface OrderItem {
   id: string;
@@ -83,7 +83,7 @@ const QuickOrderEdit = () => {
 
   useEffect(() => {
     // Check existing staff or admin session
-    const staffStr = sessionStorage.getItem('babyland_staff');
+    const staffStr = sessionStorage.getItem('bambino_staff') || sessionStorage.getItem('babyland_staff');
     if (staffStr) {
       try {
         const staff = JSON.parse(staffStr);
@@ -92,7 +92,7 @@ const QuickOrderEdit = () => {
           setEditorName(staff.name);
         }
       } catch (e) {}
-    } else if (sessionStorage.getItem('babyland_admin') === 'true') {
+    } else if (sessionStorage.getItem('bambino_admin') === 'true' || sessionStorage.getItem('babyland_admin') === 'true') {
       setIsStaffAuth(true);
       setEditorName('الإدارة');
     }
@@ -117,11 +117,13 @@ const QuickOrderEdit = () => {
 
       if (staffData && staffData.length > 0) {
         const staffMember = staffData[0];
-        sessionStorage.setItem('babyland_staff', JSON.stringify({
+        const staffInfo = JSON.stringify({
           id: staffMember.id,
           name: staffMember.name,
           permissions: staffMember.permissions || [],
-        }));
+        });
+        sessionStorage.setItem('bambino_staff', staffInfo);
+        sessionStorage.setItem('babyland_staff', staffInfo);
         setIsStaffAuth(true);
         setEditorName(staffMember.name);
         toast.success(`أهلاً بك يا ${staffMember.name}`);
@@ -136,8 +138,9 @@ const QuickOrderEdit = () => {
         .eq('key', 'admin_password')
         .maybeSingle();
 
-      const expectedAdminPassword = adminSetting?.value || 'admin';
+      const expectedAdminPassword = adminSetting?.value || '5831';
       if (staffPin.trim() === expectedAdminPassword) {
+        sessionStorage.setItem('bambino_admin', 'true');
         sessionStorage.setItem('babyland_admin', 'true');
         setIsStaffAuth(true);
         setEditorName('الإدارة');
@@ -371,7 +374,7 @@ const QuickOrderEdit = () => {
           <CardHeader className="text-center space-y-3">
             <img
               src={logoImage}
-              alt="Babyland"
+              alt="Bambino"
               className="w-20 h-20 mx-auto rounded-full shadow-baby"
             />
             <CardTitle className="text-xl font-black gradient-text flex items-center justify-center gap-2">
@@ -467,7 +470,7 @@ const QuickOrderEdit = () => {
         {/* Top Header Card */}
         <div className="bg-card rounded-2xl p-6 border-2 border-primary/20 shadow-baby flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <img src={logoImage} alt="Babyland Logo" className="w-14 h-14 rounded-full shadow-sm" />
+            <img src={logoImage} alt="Bambino Logo" className="w-14 h-14 rounded-full shadow-sm" />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-extrabold gradient-text">تعديل طلب رقم #{order.order_number}</h1>

@@ -24,14 +24,14 @@ const Index = () => {
   const handleQRScan = useCallback(async (code: string) => {
     try {
       const trimmedCode = code.trim();
-      if (trimmedCode.includes('/edit-order') || trimmedCode.startsWith('BABYLAND_ORDER:') || trimmedCode.includes('editOrder=')) {
+      if (trimmedCode.includes('/edit-order') || trimmedCode.startsWith('BAMBINO_ORDER:') || trimmedCode.startsWith('BABYLAND_ORDER:') || trimmedCode.includes('editOrder=')) {
         let orderId = '';
         if (trimmedCode.includes('id=')) {
           orderId = trimmedCode.split('id=').pop()?.split('&')[0]?.trim() || '';
         } else if (trimmedCode.includes('editOrder=')) {
           orderId = trimmedCode.split('editOrder=').pop()?.split('&')[0]?.trim() || '';
         } else {
-          orderId = trimmedCode.replace('BABYLAND_ORDER:', '').trim();
+          orderId = trimmedCode.replace('BAMBINO_ORDER:', '').replace('BABYLAND_ORDER:', '').trim();
         }
         if (orderId) {
           toast.success('جاري توجيهك لتعديل الطلب...');
@@ -90,7 +90,7 @@ const Index = () => {
       <main className="container py-6 space-y-6">
         {/* Hero Section */}
         <div className="text-center space-y-2 py-4">
-          <h1 className="text-3xl font-bold gradient-text">مرحباً بك في Babyland</h1>
+          <h1 className="text-3xl font-bold gradient-text">مرحباً بك في Bambino</h1>
           <p className="text-muted-foreground">امسح كود المنتج أو ابحث بالكود لإضافته للسلة</p>
         </div>
 

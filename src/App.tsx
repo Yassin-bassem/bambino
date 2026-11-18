@@ -16,19 +16,10 @@ import Customers from "./pages/admin/Customers";
 import Deposits from "./pages/admin/Deposits";
 import SearchByCode from "./pages/admin/SearchByCode";
 import CustomerExtraInfo from "./pages/admin/CustomerExtraInfo";
-import ProductImages from "./pages/admin/ProductImages";
 import StockAlerts from "./pages/admin/StockAlerts";
 import StaffManagement from "./pages/admin/StaffManagement";
-import ProductReport from "./pages/admin/ProductReport";
-import OrdersProgress from "./pages/admin/OrdersProgress";
-import ShippingDetails from "./pages/admin/ShippingDetails";
-import OrdersReturn from "./pages/admin/OrdersReturn";
 import Backup from "./pages/admin/Backup";
 import SalesControl from "./pages/admin/SalesControl";
-import DailySales from "./pages/admin/DailySales";
-import ProductPrices from "./pages/admin/ProductPrices";
-import DeliveryReadiness from "./pages/admin/DeliveryReadiness";
-import AiAssistant from "./pages/admin/AiAssistant";
 import QuickOrderEdit from "./pages/QuickOrderEdit";
 import NotFound from "./pages/NotFound";
 
@@ -51,23 +42,14 @@ const App = () => (
                 <Route index element={<Stats />} />
                 <Route path="products" element={<Products />} />
                 <Route path="orders" element={<Orders />} />
-                <Route path="delivery-readiness" element={<DeliveryReadiness />} />
                 <Route path="customers" element={<Customers />} />
                 <Route path="deposits" element={<Deposits />} />
                 <Route path="search-by-code" element={<SearchByCode />} />
                 <Route path="customer-extra-info" element={<CustomerExtraInfo />} />
-                <Route path="product-images" element={<ProductImages />} />
                 <Route path="stock-alerts" element={<StockAlerts />} />
-                <Route path="product-report" element={<ProductReport />} />
-                <Route path="orders-progress" element={<OrdersProgress />} />
-                <Route path="shipping-details" element={<ShippingDetails />} />
-                <Route path="orders-return" element={<OrdersReturn />} />
                 <Route path="staff" element={<StaffManagement />} />
                 <Route path="backup" element={<Backup />} />
                 <Route path="sales-control" element={<SalesControl />} />
-                <Route path="daily-sales" element={<DailySales />} />
-                <Route path="product-prices" element={<ProductPrices />} />
-                <Route path="ai-assistant" element={<AiAssistant />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
