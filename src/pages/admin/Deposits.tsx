@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Wallet, Download, Calendar, Plus, Minus, Trash2, Filter, Building2 } from 'lucide-react';
+import { Wallet, Download, Calendar, Plus, Minus, Trash2, Filter } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -57,7 +57,6 @@ const Deposits = () => {
   const [loading, setLoading] = useState(true);
   const [filterDate, setFilterDate] = useState<Date | undefined>(undefined);
   const [filterMethod, setFilterMethod] = useState<string>('all');
-  const [filterBranch, setFilterBranch] = useState<string>('all');
   const [expenseDialogOpen, setExpenseDialogOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [expenseAmount, setExpenseAmount] = useState('');
@@ -90,21 +89,12 @@ const Deposits = () => {
     }
   }, [activeVersion]);
 
-  const getDepositBranch = (d: any): string | null => {
-    if (d.branch) return d.branch;
-    if (d.orders?.branch) return d.orders.branch;
-    const extra = d.orders?.extra_info || d.extra_info || '';
-    if (extra.includes('نيلي')) return 'نيلي';
-    if (extra.includes('العبور')) return 'العبور';
-    return null;
-  };
-
   const loadData = async () => {
     if (!activeVersion) return;
     setLoading(true);
     
     const [depositsResult, expensesResult] = await Promise.all([
-      supabase.from('deposits').select('*, orders(extra_info, branch)').eq('version_id', activeVersion.id).order('created_at', { ascending: false }),
+      supabase.from('deposits').select('*').eq('version_id', activeVersion.id).order('created_at', { ascending: false }),
       supabase.from('expenses').select('*').eq('version_id', activeVersion.id).order('created_at', { ascending: false }),
     ]);
 
@@ -129,8 +119,6 @@ const Deposits = () => {
     const dateKey = dateObj.toISOString().split('T')[0];
     if (filterDate && dateKey !== format(filterDate, 'yyyy-MM-dd')) return false;
     if (filterMethod !== 'all' && d.method !== filterMethod) return false;
-    const depositBranch = getDepositBranch(d);
-    if (filterBranch !== 'all' && depositBranch !== filterBranch) return false;
     return true;
   });
 
@@ -256,11 +244,10 @@ const Deposits = () => {
   };
 
   const exportToExcel = () => {
-    const headers = ['رقم الطلب', 'اسم العميل', 'الفرع', 'المبلغ', 'طريقة الدفع', 'التاريخ والوقت'];
+    const headers = ['رقم الطلب', 'اسم العميل', 'المبلغ', 'طريقة الدفع', 'التاريخ والوقت'];
     const rows = deposits.map((d) => [
       d.order_number,
       d.customer_name,
-      d.branch || '-',
       d.amount,
       methodLabels[d.method] || d.method,
       new Date(d.created_at).toLocaleString('ar-EG'),
@@ -299,7 +286,6 @@ const Deposits = () => {
               <tr>
                 <th className="p-2 text-right">رقم الطلب</th>
                 <th className="p-2 text-right">العميل</th>
-                <th className="p-2 text-right">الفرع</th>
                 <th className="p-2 text-right">المبلغ</th>
                 <th className="p-2 text-right">الوقت</th>
               </tr>
@@ -309,21 +295,6 @@ const Deposits = () => {
                 <tr key={deposit.id} className="border-t hover:bg-muted/50">
                   <td className="p-2 font-bold text-primary">#{deposit.order_number}</td>
                   <td className="p-2">{deposit.customer_name}</td>
-                  <td className="p-2">
-                    {(() => {
-                      const b = getDepositBranch(deposit);
-                      return b ? (
-                        <span className={cn(
-                          "px-2 py-0.5 rounded-full text-xs font-semibold",
-                          b === 'نيلي' ? "bg-blue-100 text-blue-800 border border-blue-200" : "bg-emerald-100 text-emerald-800 border border-emerald-200"
-                        )}>
-                          {b}
-                        </span>
-                      ) : (
-                        <span className="text-xs text-muted-foreground">-</span>
-                      );
-                    })()}
-                  </td>
                   <td className="p-2 font-bold">{deposit.amount.toFixed(2)} ج.م</td>
                   <td className="p-2 text-muted-foreground">
                     {new Date(deposit.created_at).toLocaleTimeString('ar-EG')}
@@ -444,37 +415,6 @@ const Deposits = () => {
         )}
       </div>
 
-      {/* Branch Selection Tabs */}
-      <div className="flex items-center gap-2 p-1.5 bg-muted/60 rounded-2xl w-fit border">
-        <Button
-          size="sm"
-          variant={filterBranch === 'all' ? 'default' : 'ghost'}
-          onClick={() => setFilterBranch('all')}
-          className={cn("rounded-xl font-bold gap-1.5 px-4", filterBranch === 'all' && "shadow-sm")}
-        >
-          <Building2 className="h-4 w-4" />
-          جميع الفروع
-        </Button>
-        <Button
-          size="sm"
-          variant={filterBranch === 'نيلي' ? 'default' : 'ghost'}
-          onClick={() => setFilterBranch('نيلي')}
-          className={cn("rounded-xl font-bold gap-1.5 px-4", filterBranch === 'نيلي' && "bg-blue-600 hover:bg-blue-700 text-white shadow-sm")}
-        >
-          <Building2 className="h-4 w-4" />
-          فرع نيلي
-        </Button>
-        <Button
-          size="sm"
-          variant={filterBranch === 'العبور' ? 'default' : 'ghost'}
-          onClick={() => setFilterBranch('العبور')}
-          className={cn("rounded-xl font-bold gap-1.5 px-4", filterBranch === 'العبور' && "bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm")}
-        >
-          <Building2 className="h-4 w-4" />
-          فرع العبور
-        </Button>
-      </div>
-
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
         <Filter className="h-4 w-4 text-muted-foreground" />
@@ -514,8 +454,8 @@ const Deposits = () => {
           ))}
         </div>
 
-        {(filterDate || filterMethod !== 'all' || filterBranch !== 'all') && (
-          <Button variant="ghost" size="sm" onClick={() => { setFilterDate(undefined); setFilterMethod('all'); setFilterBranch('all'); }}>
+        {(filterDate || filterMethod !== 'all') && (
+          <Button variant="ghost" size="sm" onClick={() => { setFilterDate(undefined); setFilterMethod('all'); }}>
             مسح الفلاتر
           </Button>
         )}
