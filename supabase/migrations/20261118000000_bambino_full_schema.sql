@@ -387,18 +387,38 @@ EXCEPTION WHEN OTHERS THEN
 END $$;
 
 -- ==============================================================================
--- INITIAL SEED DATA (Active Version & Admin Password: 5831)
+-- TABLE PRIVILEGES & GRANTS (Essential for Supabase client / anon access)
+-- ==============================================================================
+
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL ROUTINES IN SCHEMA public TO anon, authenticated, service_role;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON ROUTINES TO anon, authenticated, service_role;
+
+-- ==============================================================================
+-- INITIAL SEED DATA (Active Version '2026' & Admin Password: 5831)
 -- ==============================================================================
 
 DO $$
 DECLARE
   v_version_id UUID := '00000000-0000-0000-0000-000000000001';
 BEGIN
-  -- 1. Insert default active version
+  -- 1. Insert or update default active version '2026'
   IF NOT EXISTS (SELECT 1 FROM public.versions WHERE id = v_version_id) THEN
     INSERT INTO public.versions (id, name, is_active)
-    VALUES (v_version_id, 'النسخة الحالية', true);
+    VALUES (v_version_id, '2026', true);
+  ELSE
+    UPDATE public.versions
+    SET name = '2026', is_active = true
+    WHERE id = v_version_id;
   END IF;
+
+  -- Ensure any other version is inactive
+  UPDATE public.versions SET is_active = false WHERE id != v_version_id;
 
   -- 2. Insert admin password: 5831
   IF NOT EXISTS (SELECT 1 FROM public.app_settings WHERE key = 'admin_password' AND version_id = v_version_id) THEN

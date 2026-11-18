@@ -52,6 +52,22 @@ export const VersionProvider = ({ children }: { children: ReactNode }) => {
       }
     }
 
+    // If no version exists at all, auto-create the 2026 version
+    if (allVersions.length === 0 && !error) {
+      try {
+        const { data: createdV } = await supabase
+          .from('versions')
+          .insert({ name: '2026', is_active: true })
+          .select()
+          .single();
+        if (createdV) {
+          allVersions.push(createdV);
+        }
+      } catch (err) {
+        console.error('Auto create 2026 version failed:', err);
+      }
+    }
+
     setVersions(allVersions);
 
     // Retrieve from localStorage or default to active row in DB
