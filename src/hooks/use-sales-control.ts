@@ -56,11 +56,11 @@ export const canAddProductToCart = (
   }
 
   if (settings.mode === 'allow_negative') {
-    const limit = settings.negative_limit > 0 ? -Math.abs(settings.negative_limit) : settings.negative_limit;
+    const limit = typeof settings.negative_limit === 'number' ? settings.negative_limit : 0;
     if (totalPiecesAfter < limit) {
       return {
         allowed: false,
-        reason: `لا يمكن البيع، الحد المسموح به هو ${limit} قطعة`,
+        reason: `لا يمكن البيع، الحد المسموح به في المخزون هو ${limit} قطعة (المتبقي سيكون ${totalPiecesAfter} قطعة)`,
       };
     }
     return { allowed: true };
@@ -131,26 +131,27 @@ export const useSalesControl = (): SalesControlSettings => {
  */
 export const fetchSalesControl = async (versionId?: string): Promise<SalesControlSettings> => {
   const targetVersionId = versionId || localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
-  let query = supabase
-    .from('app_settings')
-    .select('value')
-    .eq('key', SALES_CONTROL_KEY);
-
+  
   if (targetVersionId) {
-    query = query.eq('version_id', targetVersionId);
-  }
-
-  let { data } = await query.maybeSingle();
-
-  if (!data) {
-    const { data: fallback } = await supabase
+    const { data } = await supabase
       .from('app_settings')
       .select('value')
       .eq('key', SALES_CONTROL_KEY)
-      .limit(1)
+      .eq('version_id', targetVersionId)
       .maybeSingle();
-    data = fallback;
+
+    if (data?.value) {
+      return parseSalesControl(data.value);
+    }
   }
 
-  return parseSalesControl(data?.value);
+  const { data: fallback } = await supabase
+    .from('app_settings')
+    .select('value')
+    .eq('key', SALES_CONTROL_KEY)
+    .order('updated_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  return parseSalesControl(fallback?.value);
 };

@@ -56,38 +56,40 @@ const SalesControl = () => {
     setSaving(true);
     const value = JSON.stringify(settings);
     
-    let query = supabase
-      .from('app_settings')
-      .update({ value })
-      .eq('key', SALES_CONTROL_KEY);
+    try {
+      if (activeVersion) {
+        const { data: existing } = await supabase
+          .from('app_settings')
+          .select('id')
+          .eq('key', SALES_CONTROL_KEY)
+          .eq('version_id', activeVersion.id)
+          .maybeSingle();
 
-    if (activeVersion) {
-      query = query.eq('version_id', activeVersion.id);
-    }
-
-    const { error: updateError, data: updateData } = await query.select();
-
-    if (updateError) {
-      toast.error('فشل حفظ الإعدادات');
-      setSaving(false);
-      return;
-    }
-
-    if (!updateData || updateData.length === 0) {
-      const insertObj: any = { key: SALES_CONTROL_KEY, value };
-      if (activeVersion) insertObj.version_id = activeVersion.id;
-      const { error: insertError } = await supabase
-        .from('app_settings')
-        .insert(insertObj);
-      if (insertError) {
-        toast.error('فشل حفظ الإعدادات');
-        setSaving(false);
-        return;
+        if (existing) {
+          await supabase
+            .from('app_settings')
+            .update({ value, updated_at: new Date().toISOString() })
+            .eq('id', existing.id);
+        } else {
+          await supabase
+            .from('app_settings')
+            .insert({ key: SALES_CONTROL_KEY, value, version_id: activeVersion.id });
+        }
       }
-    }
 
-    toast.success('تم حفظ إعدادات البيع');
-    setSaving(false);
+      // Also sync all sales_control rows
+      await supabase
+        .from('app_settings')
+        .update({ value, updated_at: new Date().toISOString() })
+        .eq('key', SALES_CONTROL_KEY);
+
+      toast.success('تم حفظ إعدادات البيع');
+    } catch (err) {
+      console.error('Error saving sales control:', err);
+      toast.error('فشل حفظ الإعدادات');
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) {
@@ -150,7 +152,7 @@ const SalesControl = () => {
                   السماح بالبيع حتى حد معين بالسالب
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">
-                  السماح بالبيع حتى يصل المخزون إلى الحد المحدد بالأسفل (مثلاً -20 قطعة)
+                  السماح بالبيع حتى يصل المخزون إلى الحد المحدد بالأسفل (إذا كتبت 20 يعني الحد الأدنى 20 قطعة، وإذا كتبت -20 يعني الحد الأدنى -20 قطعة)
                 </p>
                 {settings.mode === 'allow_negative' && (
                   <div className="mt-3 flex items-center gap-2">
@@ -171,7 +173,7 @@ const SalesControl = () => {
                       dir="ltr"
                     />
                     <span className="text-sm text-muted-foreground">
-                      (مثلاً: -20)
+                      (مثلاً: 20 أو -20)
                     </span>
                   </div>
                 )}

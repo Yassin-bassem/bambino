@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Eye, Edit2, Trash2, FileText, Search, ShoppingCart, Plus, Copy, Printer, Undo2, Zap } from 'lucide-react';
+import { Eye, Edit2, Trash2, FileText, Search, ShoppingCart, Plus, Minus, Copy, Printer, Undo2, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -123,6 +123,7 @@ const Orders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [adminItemDrafts, setAdminItemDrafts] = useState<Record<string, number | string>>({});
   const [viewDialogOpen, setViewDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
@@ -252,6 +253,11 @@ const Orders = () => {
 
   const handleEdit = async (order: Order) => {
     const [items, refunds] = await Promise.all([loadOrderItems(order.id), loadOrderRefunds(order.id)]);
+    const drafts: Record<string, number | string> = {};
+    items.forEach((item: any) => {
+      drafts[item.id] = item.quantity;
+    });
+    setAdminItemDrafts(drafts);
     setSelectedOrder({ ...order, items, refunds });
     setEditDialogOpen(true);
   };
@@ -380,13 +386,14 @@ const Orders = () => {
   };
 
   const handleAddProductToOrder = async () => {
-    if (!selectedOrder || !addProductCode.trim() || !activeVersion) return;
+    if (!selectedOrder || !addProductCode.trim()) return;
 
+    const targetVersionId = activeVersion?.id || selectedOrder.version_id;
     const { data: product, error: productError } = await supabase
       .from('products')
       .select('*')
       .eq('code', addProductCode.trim())
-      .eq('version_id', activeVersion.id)
+      .eq('version_id', targetVersionId)
       .maybeSingle();
 
     if (productError || !product) {
@@ -394,41 +401,60 @@ const Orders = () => {
       return;
     }
 
+    const mult = getDescriptionMultiplier(product.description);
+    const piecesToDeduct = 1 * mult;
+    const newStockPieces = product.stock_quantity - piecesToDeduct;
+
     // Connect to sales instructions
-    const targetVersionId = activeVersion?.id || selectedOrder.version_id;
     const salesControl = await fetchSalesControl(targetVersionId);
-    const check = canAddProductToCart(salesControl, product, 1, 0);
-    if (!check.allowed) {
-      toast.error(check.reason || 'لا يمكن إضافة المنتج وفقاً لتعليمات البيع');
-      return;
+    if (salesControl.mode === 'stop_at_zero') {
+      if (newStockPieces < 0) {
+        toast.error(`هذا المنتج نفد من المخزون ولا يمكن إضافته (المتاح: ${product.stock_quantity} قطعة)`);
+        return;
+      }
+    } else if (salesControl.mode === 'allow_negative') {
+      const limit = typeof salesControl.negative_limit === 'number' ? salesControl.negative_limit : 0;
+      if (newStockPieces < limit) {
+        toast.error(`لا يمكن إضافة المنتج، الحد المسموح به في المخزون هو ${limit} قطعة (المتبقي سيكون ${newStockPieces} قطعة)`);
+        return;
+      }
     }
 
-    // Insert item - database trigger deduct_stock_trigger deducts (quantity * multiplier) automatically
-    const { error } = await supabase.from('order_items').insert({
-      order_id: selectedOrder.id,
-      product_id: product.id,
-      product_code: product.code,
-      product_name: product.name,
-      product_description: product.description,
-      price: product.price,
-      quantity: 1,
-      version_id: activeVersion.id,
-    });
+    // Insert item - database trigger deduct_stock_trigger deducts (1 * multiplier) automatically
+    const { data: insertedItem, error } = await supabase
+      .from('order_items')
+      .insert({
+        order_id: selectedOrder.id,
+        product_id: product.id,
+        product_code: product.code,
+        product_name: product.name,
+        product_description: product.description,
+        price: product.price,
+        quantity: 1,
+        version_id: targetVersionId,
+      })
+      .select()
+      .single();
 
     if (error) {
       toast.error('فشل في إضافة المنتج');
     } else {
       toast.success('تم إضافة المنتج');
-      const mult = getDescriptionMultiplier(product.description);
-      const remainingPieces = product.stock_quantity - (1 * mult);
-      if (remainingPieces <= 10) {
+      if (newStockPieces <= 10) {
         sendStockAlertTelegram({
           code: product.code,
           name: product.name,
-          stock_quantity: remainingPieces,
+          stock_quantity: newStockPieces,
         });
       }
       const items = await loadOrderItems(selectedOrder.id);
+      
+      const drafts: Record<string, number | string> = {};
+      items.forEach((item: any) => {
+        drafts[item.id] = item.quantity;
+      });
+      setAdminItemDrafts(drafts);
+
       setSelectedOrder({ ...selectedOrder, items });
       setAddProductCode('');
       
@@ -453,23 +479,28 @@ const Orders = () => {
 
     // Get item to restore stock
     const itemToRemove = selectedOrder.items?.find(i => i.id === itemId);
+    if (!itemToRemove) return;
     
     const { error } = await supabase.from('order_items').delete().eq('id', itemId);
     if (error) {
       toast.error('فشل في حذف المنتج');
     } else {
       // Restore stock by (quantity * multiplier)
-      if (itemToRemove) {
-        const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', itemToRemove.product_id).single();
-        if (product) {
-          const mult = getDescriptionMultiplier(itemToRemove.product_description || product.description);
-          await supabase.from('products').update({
-            stock_quantity: product.stock_quantity + (itemToRemove.quantity * mult)
-          }).eq('id', itemToRemove.product_id);
-        }
+      const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', itemToRemove.product_id).single();
+      if (product) {
+        const mult = getDescriptionMultiplier(itemToRemove.product_description || product.description);
+        await supabase.from('products').update({
+          stock_quantity: product.stock_quantity + (itemToRemove.quantity * mult)
+        }).eq('id', itemToRemove.product_id);
       }
       
       const items = await loadOrderItems(selectedOrder.id);
+      const drafts: Record<string, number | string> = {};
+      items.forEach((item: any) => {
+        drafts[item.id] = item.quantity;
+      });
+      setAdminItemDrafts(drafts);
+
       setSelectedOrder({ ...selectedOrder, items });
       
       // Update order totals with description multiplier & record staff editor
@@ -489,47 +520,80 @@ const Orders = () => {
   };
 
   const handleUpdateItemQuantity = async (itemId: string, quantity: number) => {
-    if (!selectedOrder || quantity < 1) return;
+    if (!selectedOrder || quantity < 1) {
+      const cur = selectedOrder?.items?.find(i => i.id === itemId);
+      if (cur) setAdminItemDrafts(prev => ({ ...prev, [itemId]: cur.quantity }));
+      return false;
+    }
 
-    // Get current item to calculate stock difference
     const currentItem = selectedOrder.items?.find(i => i.id === itemId);
-    if (!currentItem) return;
+    if (!currentItem) return false;
+    if (quantity === currentItem.quantity) {
+      setAdminItemDrafts(prev => ({ ...prev, [itemId]: quantity }));
+      return true;
+    }
     
-    const quantityDiff = quantity - currentItem.quantity;
-    
-    // Update stock (negative diff means more items, so deduct; positive means fewer items, so restore)
-    const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', currentItem.product_id).single();
-    if (product) {
-      const mult = getDescriptionMultiplier(currentItem.product_description || product.description);
-      const quantityDiff = (quantity - currentItem.quantity) * mult;
+    const { data: product, error: pErr } = await supabase.from('products').select('id, stock_quantity, description').eq('id', currentItem.product_id).single();
+    if (pErr || !product) {
+      toast.error('فشل في جلب بيانات المنتج من المخزون');
+      setAdminItemDrafts(prev => ({ ...prev, [itemId]: currentItem.quantity }));
+      return false;
+    }
 
-      // If increasing quantity, check sales instructions
-      if (quantityDiff > 0) {
-        const targetVersionId = activeVersion?.id || selectedOrder.version_id;
-        const salesControl = await fetchSalesControl(targetVersionId);
-        const check = canAddProductToCart(salesControl, product, quantity - currentItem.quantity, 0);
-        if (!check.allowed) {
-          toast.error(check.reason || 'المخزون غير كافٍ لزيادة الكمية وفقاً لتعليمات البيع');
-          return;
+    const mult = getDescriptionMultiplier(currentItem.product_description || product.description);
+    const diffUnits = quantity - currentItem.quantity;
+    const diffPieces = diffUnits * mult;
+    const newStockPieces = product.stock_quantity - diffPieces;
+
+    // If increasing quantity, check sales instructions
+    if (diffUnits > 0) {
+      const targetVersionId = activeVersion?.id || selectedOrder.version_id;
+      const salesControl = await fetchSalesControl(targetVersionId);
+      
+      if (salesControl.mode === 'stop_at_zero') {
+        if (newStockPieces < 0) {
+          toast.error(`المخزون غير كافٍ (المتاح: ${product.stock_quantity} قطعة، والمطلوب إضافته: ${diffPieces} قطعة)`);
+          setAdminItemDrafts(prev => ({ ...prev, [itemId]: currentItem.quantity }));
+          return false;
+        }
+      } else if (salesControl.mode === 'allow_negative') {
+        const limit = typeof salesControl.negative_limit === 'number' ? salesControl.negative_limit : 0;
+        if (newStockPieces < limit) {
+          toast.error(`لا يمكن زيادة الكمية، الحد المسموح به في المخزون هو ${limit} قطعة (المتبقي سيكون ${newStockPieces} قطعة)`);
+          setAdminItemDrafts(prev => ({ ...prev, [itemId]: currentItem.quantity }));
+          return false;
         }
       }
+    }
 
-      await supabase.from('products').update({
-        stock_quantity: product.stock_quantity - quantityDiff
-      }).eq('id', currentItem.product_id);
+    // Update stock in database (normal negative stock without clamping!)
+    const { error: stockErr } = await supabase.from('products').update({
+      stock_quantity: newStockPieces
+    }).eq('id', currentItem.product_id);
+
+    if (stockErr) {
+      toast.error('فشل في تحديث المخزون');
+      setAdminItemDrafts(prev => ({ ...prev, [itemId]: currentItem.quantity }));
+      return false;
     }
 
     const { error } = await supabase.from('order_items').update({ quantity }).eq('id', itemId);
     if (error) {
       toast.error('فشل في تحديث الكمية');
-      // Restore stock on failure
-      if (product) {
-        await supabase.from('products').update({
-          stock_quantity: product.stock_quantity
-        }).eq('id', currentItem.product_id);
-      }
+      // Rollback stock on failure
+      await supabase.from('products').update({
+        stock_quantity: product.stock_quantity
+      }).eq('id', currentItem.product_id);
+      setAdminItemDrafts(prev => ({ ...prev, [itemId]: currentItem.quantity }));
+      return false;
     } else {
       const items = await loadOrderItems(selectedOrder.id);
+      const drafts: Record<string, number | string> = {};
+      items.forEach((item: any) => {
+        drafts[item.id] = item.quantity;
+      });
+      setAdminItemDrafts(drafts);
+
       setSelectedOrder({ ...selectedOrder, items });
       
       // Update order totals with description multiplier & record staff editor
@@ -544,7 +608,9 @@ const Orders = () => {
       }).eq('id', selectedOrder.id);
       
       setSelectedOrder({ ...selectedOrder, items, staff_member_name: updatedStaffName });
+      toast.success('تم تحديث الكمية بنجاح');
       loadOrders();
+      return true;
     }
   };
 
@@ -1648,14 +1714,46 @@ const Orders = () => {
                             </td>
                             <td className="p-3">{item.price} ج.م</td>
                             <td className="p-3">
-                              <Input
-                                type="number"
-                                min="1"
-                                value={item.quantity}
-                                onChange={(e) => handleUpdateItemQuantity(item.id, parseInt(e.target.value) || 1)}
-                                className="w-20"
-                                dir="ltr"
-                              />
+                              <div className="flex items-center gap-1">
+                                <Button
+                                  size="icon"
+                                  variant="outline"
+                                  className="h-8 w-8 text-primary font-bold"
+                                  onClick={() => handleUpdateItemQuantity(item.id, item.quantity - 1)}
+                                  disabled={item.quantity <= 1}
+                                >
+                                  <Minus className="h-3 w-3" />
+                                </Button>
+                                <Input
+                                  type="number"
+                                  min="1"
+                                  value={adminItemDrafts[item.id] ?? item.quantity}
+                                  onChange={(e) => setAdminItemDrafts(prev => ({ ...prev, [item.id]: e.target.value }))}
+                                  onBlur={(e) => {
+                                    const val = parseInt(e.target.value);
+                                    if (!val || val < 1 || val === item.quantity) {
+                                      setAdminItemDrafts(prev => ({ ...prev, [item.id]: item.quantity }));
+                                      return;
+                                    }
+                                    handleUpdateItemQuantity(item.id, val);
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      (e.target as HTMLInputElement).blur();
+                                    }
+                                  }}
+                                  className="w-16 h-8 text-center font-bold"
+                                  dir="ltr"
+                                />
+                                <Button
+                                  size="icon"
+                                  variant="outline"
+                                  className="h-8 w-8 text-primary font-bold"
+                                  onClick={() => handleUpdateItemQuantity(item.id, item.quantity + 1)}
+                                >
+                                  <Plus className="h-3 w-3" />
+                                </Button>
+                              </div>
                             </td>
                             <td className="p-3 font-bold">{itemTotal.toFixed(2)} ج.م</td>
                             <td className="p-3">
