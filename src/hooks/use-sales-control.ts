@@ -49,17 +49,18 @@ export const canAddProductToCart = (
     if (totalPiecesAfter < 0) {
       return {
         allowed: false,
-        reason: 'هذا المنتج نفد من المخزون ولا يمكن إضافته للسلة',
+        reason: 'هذا المنتج نفد من المخزون ولا يمكن إضافته (تعليمات البيع: إيقاف البيع عند نفاد الكمية)',
       };
     }
     return { allowed: true };
   }
 
   if (settings.mode === 'allow_negative') {
-    if (totalPiecesAfter < settings.negative_limit) {
+    const limit = settings.negative_limit > 0 ? -Math.abs(settings.negative_limit) : settings.negative_limit;
+    if (totalPiecesAfter < limit) {
       return {
         allowed: false,
-        reason: `لا يمكن البيع، الحد المسموح به هو ${settings.negative_limit} قطعة`,
+        reason: `لا يمكن البيع، الحد المسموح به هو ${limit} قطعة`,
       };
     }
     return { allowed: true };
@@ -126,17 +127,17 @@ export const useSalesControl = (): SalesControlSettings => {
 };
 
 /**
- * Fetch settings imperatively (for one-shot checks like QR scan).
+ * Fetch settings imperatively (for one-shot checks like QR scan or order edits).
  */
-export const fetchSalesControl = async (): Promise<SalesControlSettings> => {
-  const activeVersionId = localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
+export const fetchSalesControl = async (versionId?: string): Promise<SalesControlSettings> => {
+  const targetVersionId = versionId || localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
   let query = supabase
     .from('app_settings')
     .select('value')
     .eq('key', SALES_CONTROL_KEY);
 
-  if (activeVersionId) {
-    query = query.eq('version_id', activeVersionId);
+  if (targetVersionId) {
+    query = query.eq('version_id', targetVersionId);
   }
 
   let { data } = await query.maybeSingle();

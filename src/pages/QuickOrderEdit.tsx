@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Save, ArrowRight, Plus, Trash2, Undo2, CheckCircle2, User, Lock, KeyRound, Eye, EyeOff } from 'lucide-react';
 import logoImage from '@/assets/bambino-logo.jpg';
+import { fetchSalesControl, canAddProductToCart } from '@/hooks/use-sales-control';
 
 interface OrderItem {
   id: string;
@@ -223,6 +224,14 @@ const QuickOrderEdit = () => {
       return;
     }
 
+    // Connect to sales instructions
+    const salesControl = await fetchSalesControl(order.version_id);
+    const check = canAddProductToCart(salesControl, product, 1, 0);
+    if (!check.allowed) {
+      toast.error(check.reason || 'لا يمكن إضافة المنتج وفقاً لتعليمات البيع');
+      return;
+    }
+
     // Insert item - database trigger deduct_stock_trigger deducts (quantity * multiplier) automatically
     const { error: insertErr } = await supabase.from('order_items').insert({
       order_id: order.id,
@@ -275,8 +284,20 @@ const QuickOrderEdit = () => {
     if (product) {
       const mult = getDescriptionMultiplier(currentItem.product_description || product.description);
       const diff = (quantity - currentItem.quantity) * mult;
+
+      // If increasing quantity, check sales instructions
+      if (diff > 0) {
+        const salesControl = await fetchSalesControl(order.version_id);
+        const check = canAddProductToCart(salesControl, product, quantity - currentItem.quantity, 0);
+        if (!check.allowed) {
+          toast.error(check.reason || 'المخزون غير كافٍ لزيادة الكمية وفقاً لتعليمات البيع');
+          return;
+        }
+      }
+
+      // Update stock WITHOUT Math.max(0, ...) so it becomes negative normally (e.g. -10) when allowed
       await supabase.from('products').update({
-        stock_quantity: Math.max(0, product.stock_quantity - diff)
+        stock_quantity: product.stock_quantity - diff
       }).eq('id', currentItem.product_id);
     }
 

@@ -10,6 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import logoImage from '@/assets/bambino-logo.jpg';
 import { useVersion } from '@/contexts/VersionContext';
+import { fetchSalesControl, canAddProductToCart } from '@/hooks/use-sales-control';
 import { Checkbox } from '@/components/ui/checkbox';
 import { sendStockAlertTelegram } from '@/lib/telegramAlerts';
 import { silentPrintHtml } from '@/lib/silentPrint';
@@ -393,6 +394,15 @@ const Orders = () => {
       return;
     }
 
+    // Connect to sales instructions
+    const targetVersionId = activeVersion?.id || selectedOrder.version_id;
+    const salesControl = await fetchSalesControl(targetVersionId);
+    const check = canAddProductToCart(salesControl, product, 1, 0);
+    if (!check.allowed) {
+      toast.error(check.reason || 'لا يمكن إضافة المنتج وفقاً لتعليمات البيع');
+      return;
+    }
+
     // Insert item - database trigger deduct_stock_trigger deducts (quantity * multiplier) automatically
     const { error } = await supabase.from('order_items').insert({
       order_id: selectedOrder.id,
@@ -492,6 +502,18 @@ const Orders = () => {
     if (product) {
       const mult = getDescriptionMultiplier(currentItem.product_description || product.description);
       const quantityDiff = (quantity - currentItem.quantity) * mult;
+
+      // If increasing quantity, check sales instructions
+      if (quantityDiff > 0) {
+        const targetVersionId = activeVersion?.id || selectedOrder.version_id;
+        const salesControl = await fetchSalesControl(targetVersionId);
+        const check = canAddProductToCart(salesControl, product, quantity - currentItem.quantity, 0);
+        if (!check.allowed) {
+          toast.error(check.reason || 'المخزون غير كافٍ لزيادة الكمية وفقاً لتعليمات البيع');
+          return;
+        }
+      }
+
       await supabase.from('products').update({
         stock_quantity: product.stock_quantity - quantityDiff
       }).eq('id', currentItem.product_id);
