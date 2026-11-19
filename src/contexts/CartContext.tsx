@@ -12,10 +12,14 @@ export interface CartItem {
 }
 
 // Extract multiplier from description like "250/10" -> 10
-export const getDescriptionMultiplier = (description: string): number => {
+export const getDescriptionMultiplier = (description?: string | null): number => {
   if (!description) return 1;
-  const match = description.match(/^\d+\/(\d+)$/);
-  return match ? parseInt(match[1], 10) : 1;
+  const match = description.match(/\/(\d+)/);
+  if (match) {
+    const val = parseInt(match[1], 10);
+    return !isNaN(val) && val > 0 ? val : 1;
+  }
+  return 1;
 };
 
 // Calculate item total with description multiplier

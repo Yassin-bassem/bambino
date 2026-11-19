@@ -20,6 +20,7 @@ import StockAlerts from "./pages/admin/StockAlerts";
 import StaffManagement from "./pages/admin/StaffManagement";
 import Backup from "./pages/admin/Backup";
 import SalesControl from "./pages/admin/SalesControl";
+import DailyCustomers from "./pages/admin/DailyCustomers";
 import QuickOrderEdit from "./pages/QuickOrderEdit";
 import NotFound from "./pages/NotFound";
 
@@ -43,6 +44,7 @@ const App = () => (
                 <Route path="products" element={<Products />} />
                 <Route path="orders" element={<Orders />} />
                 <Route path="customers" element={<Customers />} />
+                <Route path="daily-customers" element={<DailyCustomers />} />
                 <Route path="deposits" element={<Deposits />} />
                 <Route path="search-by-code" element={<SearchByCode />} />
                 <Route path="customer-extra-info" element={<CustomerExtraInfo />} />

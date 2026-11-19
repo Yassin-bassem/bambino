@@ -355,10 +355,11 @@ const Orders = () => {
     
     // Restore stock for all items
     for (const item of items) {
-      const { data: product } = await supabase.from('products').select('stock_quantity').eq('id', item.product_id).single();
+      const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', item.product_id).single();
       if (product) {
+        const mult = getDescriptionMultiplier(item.product_description || product.description);
         await supabase.from('products').update({
-          stock_quantity: product.stock_quantity + item.quantity
+          stock_quantity: product.stock_quantity + (item.quantity * mult)
         }).eq('id', item.product_id);
       }
     }
@@ -392,11 +393,7 @@ const Orders = () => {
       return;
     }
 
-    // Deduct stock
-    await supabase.from('products').update({
-      stock_quantity: product.stock_quantity - 1
-    }).eq('id', product.id);
-
+    // Insert item - database trigger deduct_stock_trigger deducts (quantity * multiplier) automatically
     const { error } = await supabase.from('order_items').insert({
       order_id: selectedOrder.id,
       product_id: product.id,
@@ -410,17 +407,15 @@ const Orders = () => {
 
     if (error) {
       toast.error('فشل في إضافة المنتج');
-      // Restore stock on failure
-      await supabase.from('products').update({
-        stock_quantity: product.stock_quantity
-      }).eq('id', product.id);
     } else {
       toast.success('تم إضافة المنتج');
-      if (product.stock_quantity - 1 <= 10) {
+      const mult = getDescriptionMultiplier(product.description);
+      const remainingPieces = product.stock_quantity - (1 * mult);
+      if (remainingPieces <= 10) {
         sendStockAlertTelegram({
           code: product.code,
           name: product.name,
-          stock_quantity: product.stock_quantity - 1,
+          stock_quantity: remainingPieces,
         });
       }
       const items = await loadOrderItems(selectedOrder.id);
@@ -453,12 +448,13 @@ const Orders = () => {
     if (error) {
       toast.error('فشل في حذف المنتج');
     } else {
-      // Restore stock
+      // Restore stock by (quantity * multiplier)
       if (itemToRemove) {
-        const { data: product } = await supabase.from('products').select('stock_quantity').eq('id', itemToRemove.product_id).single();
+        const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', itemToRemove.product_id).single();
         if (product) {
+          const mult = getDescriptionMultiplier(itemToRemove.product_description || product.description);
           await supabase.from('products').update({
-            stock_quantity: product.stock_quantity + itemToRemove.quantity
+            stock_quantity: product.stock_quantity + (itemToRemove.quantity * mult)
           }).eq('id', itemToRemove.product_id);
         }
       }
@@ -492,8 +488,10 @@ const Orders = () => {
     const quantityDiff = quantity - currentItem.quantity;
     
     // Update stock (negative diff means more items, so deduct; positive means fewer items, so restore)
-    const { data: product } = await supabase.from('products').select('stock_quantity').eq('id', currentItem.product_id).single();
+    const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', currentItem.product_id).single();
     if (product) {
+      const mult = getDescriptionMultiplier(currentItem.product_description || product.description);
+      const quantityDiff = (quantity - currentItem.quantity) * mult;
       await supabase.from('products').update({
         stock_quantity: product.stock_quantity - quantityDiff
       }).eq('id', currentItem.product_id);
@@ -1050,21 +1048,6 @@ const Orders = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <Button
-            type="button"
-            variant={autoPrintEnabled ? "default" : "outline"}
-            onClick={toggleAutoPrint}
-            className={cn(
-              "gap-2 font-bold transition-all border-2",
-              autoPrintEnabled
-                ? "bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-500 shadow-md ring-2 ring-emerald-300"
-                : "border-slate-300 text-slate-700 hover:bg-slate-50"
-            )}
-          >
-            <Printer className={cn("h-5 w-5", autoPrintEnabled && "animate-bounce text-white")} />
-            {autoPrintEnabled ? "🟢 وضع المعرض: الطباعة التلقائية (مفعل)" : "⚪ وضع المعرض: طباعة تلقائية (إيقاف)"}
-          </Button>
-
           {selectedOrderIds.size > 0 && (
             <Button onClick={handlePrintSelected} className="gap-2">
               <Printer className="h-4 w-4" />
@@ -1073,30 +1056,6 @@ const Orders = () => {
           )}
         </div>
       </div>
-
-      {/* Expo Mode Active Banner */}
-      {autoPrintEnabled && (
-        <div className="bg-emerald-500/10 border-2 border-emerald-500/50 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-sm animate-in fade-in duration-300">
-          <div className="flex items-center gap-3">
-            <span className="relative flex h-3.5 w-3.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
-            </span>
-            <div>
-              <p className="text-emerald-900 dark:text-emerald-300 font-bold text-sm flex items-center gap-2">
-                <Zap className="h-4 w-4 text-emerald-600 animate-pulse" />
-                وضع المعرض نشط (Expo Auto-Print Mode)
-              </p>
-              <p className="text-emerald-700 dark:text-emerald-400 text-xs mt-0.5">
-                أي طلب جديد يتم إرساله من الموقع أو الكاشير سيتم فتح نافذة الطباعة تلقائياً فور وصوله للطابعة الموصولة بالسلك.
-              </p>
-            </div>
-          </div>
-          <Badge className="bg-emerald-600 text-white px-3 py-1 text-xs font-semibold">
-            طابعة سلكية موصولة 🖨️
-          </Badge>
-        </div>
-      )}
 
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[240px] max-w-md">
@@ -1688,75 +1647,6 @@ const Orders = () => {
                     </tbody>
                   </table>
                 </div>
-              </div>
-
-              {/* Refund Section */}
-              <div className="border rounded-lg p-4 space-y-4 border-destructive/40 bg-destructive/5">
-                <div className="flex items-center gap-2 border-b pb-2">
-                  <Undo2 className="h-5 w-5 text-destructive" />
-                  <h3 className="font-bold text-lg text-destructive">منتجات الاسترجاع</h3>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  يتم خصم إجمالي الاسترجاع من إجمالي الطلب. لا يؤثر الاسترجاع على المخزون.
-                </p>
-                <div className="flex gap-2">
-                  <Input
-                    placeholder="أدخل كود المنتج المراد استرجاعه"
-                    value={addRefundCode}
-                    onChange={(e) => setAddRefundCode(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddRefundToOrder(); } }}
-                    dir="ltr"
-                  />
-                  <Button onClick={handleAddRefundToOrder} variant="destructive" className="gap-2">
-                    <Undo2 className="h-4 w-4" />
-                    إضافة استرجاع
-                  </Button>
-                </div>
-                {selectedOrder.refunds && selectedOrder.refunds.length > 0 && (
-                  <div className="border rounded-lg overflow-hidden">
-                    <table className="w-full text-sm">
-                      <thead className="bg-muted">
-                        <tr>
-                          <th className="p-3 text-right">المنتج</th>
-                          <th className="p-3 text-right">السعر</th>
-                          <th className="p-3 text-right">الكمية</th>
-                          <th className="p-3 text-right">الإجمالي</th>
-                          <th className="p-3 text-right">إجراءات</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {selectedOrder.refunds.map((r) => {
-                          const rt = calculateItemTotal(r as unknown as OrderItem);
-                          return (
-                            <tr key={r.id} className="border-t">
-                              <td className="p-3">
-                                <p className="font-medium">{r.product_name}</p>
-                                <p className="text-xs text-muted-foreground">#{r.product_code}</p>
-                              </td>
-                              <td className="p-3">{r.price} ج.م</td>
-                              <td className="p-3">
-                                <Input
-                                  type="number"
-                                  min="1"
-                                  value={r.quantity}
-                                  onChange={(e) => handleUpdateRefundQuantity(r.id, parseInt(e.target.value) || 1)}
-                                  className="w-20"
-                                  dir="ltr"
-                                />
-                              </td>
-                              <td className="p-3 font-bold text-destructive">-{rt.toFixed(2)} ج.م</td>
-                              <td className="p-3">
-                                <Button size="sm" variant="ghost" className="text-destructive" onClick={() => handleRemoveRefund(r.id)}>
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
               </div>
 
               <div className="text-left space-y-1 border-t pt-4">

@@ -257,16 +257,34 @@ CREATE TRIGGER update_shipping_details_updated_at
   BEFORE UPDATE ON public.shipping_details
   FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
--- Function: deduct stock when order item is inserted
+-- Function: deduct stock when order item is inserted (multiplied by pieces from description e.g. '500/10' -> 10)
 CREATE OR REPLACE FUNCTION public.deduct_stock_on_order()
 RETURNS TRIGGER AS $$
+DECLARE
+  v_multiplier INTEGER := 1;
+  v_desc TEXT;
 BEGIN
+  -- Get multiplier from NEW.product_description or from public.products
+  IF NEW.product_description IS NOT NULL AND NEW.product_description ~ '/[0-9]+' THEN
+    v_multiplier := CAST(SUBSTRING(NEW.product_description FROM '/([0-9]+)') AS INTEGER);
+  ELSE
+    SELECT description INTO v_desc FROM public.products WHERE id = NEW.product_id;
+    IF v_desc IS NOT NULL AND v_desc ~ '/[0-9]+' THEN
+      v_multiplier := CAST(SUBSTRING(v_desc FROM '/([0-9]+)') AS INTEGER);
+    END IF;
+  END IF;
+
+  IF v_multiplier IS NULL OR v_multiplier < 1 THEN
+    v_multiplier := 1;
+  END IF;
+
   UPDATE public.products
-  SET stock_quantity = stock_quantity - NEW.quantity
+  SET stock_quantity = stock_quantity - (NEW.quantity * v_multiplier)
   WHERE id = NEW.product_id;
+
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 DROP TRIGGER IF EXISTS deduct_stock_trigger ON public.order_items;
 CREATE TRIGGER deduct_stock_trigger

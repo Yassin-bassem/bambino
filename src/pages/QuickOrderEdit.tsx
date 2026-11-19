@@ -223,11 +223,7 @@ const QuickOrderEdit = () => {
       return;
     }
 
-    // Deduct stock quantity
-    await supabase.from('products').update({
-      stock_quantity: Math.max(0, product.stock_quantity - 1)
-    }).eq('id', product.id);
-
+    // Insert item - database trigger deduct_stock_trigger deducts (quantity * multiplier) automatically
     const { error: insertErr } = await supabase.from('order_items').insert({
       order_id: order.id,
       product_id: product.id,
@@ -257,10 +253,11 @@ const QuickOrderEdit = () => {
       toast.error('فشل في حذف المنتج');
     } else {
       if (itemToRemove) {
-        const { data: product } = await supabase.from('products').select('stock_quantity').eq('id', itemToRemove.product_id).single();
+        const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', itemToRemove.product_id).single();
         if (product) {
+          const mult = getDescriptionMultiplier(itemToRemove.product_description || product.description);
           await supabase.from('products').update({
-            stock_quantity: product.stock_quantity + itemToRemove.quantity
+            stock_quantity: product.stock_quantity + (itemToRemove.quantity * mult)
           }).eq('id', itemToRemove.product_id);
         }
       }
@@ -274,9 +271,10 @@ const QuickOrderEdit = () => {
     const currentItem = order.items?.find(i => i.id === itemId);
     if (!currentItem) return;
 
-    const diff = quantity - currentItem.quantity;
-    const { data: product } = await supabase.from('products').select('stock_quantity').eq('id', currentItem.product_id).single();
+    const { data: product } = await supabase.from('products').select('stock_quantity, description').eq('id', currentItem.product_id).single();
     if (product) {
+      const mult = getDescriptionMultiplier(currentItem.product_description || product.description);
+      const diff = (quantity - currentItem.quantity) * mult;
       await supabase.from('products').update({
         stock_quantity: Math.max(0, product.stock_quantity - diff)
       }).eq('id', currentItem.product_id);
@@ -672,73 +670,6 @@ const QuickOrderEdit = () => {
                 </tbody>
               </table>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Refund Products Section */}
-        <Card className="border border-destructive/30 bg-destructive/5">
-          <CardHeader className="pb-3 border-b border-destructive/20">
-            <CardTitle className="text-lg flex items-center gap-2 text-destructive">
-              <Undo2 className="h-5 w-5" />
-              منتجات الاسترجاع
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 space-y-4">
-            <div className="flex gap-2">
-              <Input
-                placeholder="أدخل كود المنتج المراد استرجاعه..."
-                value={addRefundCode}
-                onChange={(e) => setAddRefundCode(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddRefund())}
-                dir="ltr"
-              />
-              <Button onClick={handleAddRefund} variant="destructive" className="gap-2">
-                <Undo2 className="h-4 w-4" /> استرجاع
-              </Button>
-            </div>
-
-            {order.refunds && order.refunds.length > 0 && (
-              <div className="border rounded-xl overflow-x-auto bg-background">
-                <table className="w-full text-sm">
-                  <thead className="bg-muted">
-                    <tr>
-                      <th className="p-3 text-right">المنتج</th>
-                      <th className="p-3 text-right">السعر</th>
-                      <th className="p-3 text-right">الكمية</th>
-                      <th className="p-3 text-right">الإجمالي</th>
-                      <th className="p-3 text-right">حذف</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {order.refunds.map((r) => {
-                      const rt = calculateItemTotal(r as unknown as OrderItem);
-                      return (
-                        <tr key={r.id} className="border-t">
-                          <td className="p-3 font-medium">{r.product_name} (#{r.product_code})</td>
-                          <td className="p-3">{r.price} ج.م</td>
-                          <td className="p-3">
-                            <Input
-                              type="number"
-                              min="1"
-                              value={r.quantity}
-                              onChange={(e) => handleUpdateRefundQuantity(r.id, parseInt(e.target.value) || 1)}
-                              className="w-20"
-                              dir="ltr"
-                            />
-                          </td>
-                          <td className="p-3 font-bold text-destructive">-{rt.toFixed(2)} ج.م</td>
-                          <td className="p-3">
-                            <Button size="sm" variant="ghost" className="text-destructive" onClick={() => handleRemoveRefund(r.id)}>
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
           </CardContent>
         </Card>
 
