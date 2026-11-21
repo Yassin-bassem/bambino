@@ -84,7 +84,8 @@ const sortProductsAscending = (list: Product[]): Product[] => {
 
 export const getCategoryForProduct = (p: Product, map: Record<string, string>): string => {
   if (p.category && p.category.trim()) return p.category.trim();
-  if (p.code && map[p.code]) return map[p.code];
+  const code = String(p.code || '').trim();
+  if (code && map[code]) return map[code];
   if (p.id && map[p.id]) return map[p.id];
   
   const name = String(p.name || '').trim();
@@ -152,53 +153,62 @@ const Products = () => {
 
   useEffect(() => {
     if (activeVersion) {
-      loadCategoriesAndMap();
       loadProducts();
     }
   }, [activeVersion]);
 
-  // Load category dictionary from app_settings
-  const loadCategoriesAndMap = async () => {
-    if (!activeVersion) return;
-    try {
-      const { data } = await supabase
-        .from('app_settings')
-        .select('value')
-        .eq('version_id', activeVersion.id)
-        .eq('key', `categories_map_${activeVersion.id}`)
-        .maybeSingle();
-
-      if (data?.value) {
-        const parsed = JSON.parse(data.value);
-        if (Array.isArray(parsed.categories) && parsed.categories.length > 0) {
-          const validCategories = parsed.categories.filter((c: string) => !['جاكيت', 'سويت شيرت', 'طقم', 'بلوفر', 'جيب', 'بنطلون', 'بلوزة', 'قميص'].includes(c));
-          const finalCats = validCategories.length > 0 ? validCategories : DEFAULT_CATEGORIES;
-          const mergedCategories = Array.from(new Set([...DEFAULT_CATEGORIES, ...finalCats]));
-          setCategories(mergedCategories);
-        }
-        if (parsed.map && typeof parsed.map === 'object') {
-          setCategoryMap(parsed.map);
-        }
-      }
-    } catch (e) {
-      console.error('Failed to load categories map', e);
-    }
-  };
-
+  // Load products and categories together to ensure immediate sync
   const loadProducts = async () => {
     if (!activeVersion) return;
     setLoading(true);
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .eq('version_id', activeVersion.id);
+    try {
+      const [settingsRes, productsRes] = await Promise.all([
+        supabase
+          .from('app_settings')
+          .select('value')
+          .eq('version_id', activeVersion.id)
+          .eq('key', `categories_map_${activeVersion.id}`)
+          .maybeSingle(),
+        supabase
+          .from('products')
+          .select('*')
+          .eq('version_id', activeVersion.id),
+      ]);
 
-    if (error) {
-      toast.error('فشل في تحميل المنتجات');
-    } else {
-      setProducts(sortProductsAscending(data || []));
+      let loadedMap: Record<string, string> = {};
+      let loadedCats: string[] = DEFAULT_CATEGORIES;
+
+      if (settingsRes.data?.value) {
+        try {
+          const parsed = JSON.parse(settingsRes.data.value);
+          if (parsed.map && typeof parsed.map === 'object') {
+            loadedMap = parsed.map;
+            setCategoryMap(loadedMap);
+          }
+          if (Array.isArray(parsed.categories) && parsed.categories.length > 0) {
+            const valid = parsed.categories.filter((c: string) => !['جاكيت', 'سويت شيرت', 'طقم', 'بلوفر', 'جيب', 'بنطلون', 'بلوزة', 'قميص'].includes(c));
+            loadedCats = Array.from(new Set([...DEFAULT_CATEGORIES, ...(valid.length > 0 ? valid : DEFAULT_CATEGORIES)]));
+            setCategories(loadedCats);
+          }
+        } catch (e) {
+          console.error('Failed to parse categories map', e);
+        }
+      }
+
+      if (productsRes.error) {
+        toast.error('فشل في تحميل المنتجات');
+      } else {
+        const enriched = (productsRes.data || []).map((p: Product) => {
+          const cat = p.category || loadedMap[p.code] || getCategoryForProduct(p, loadedMap);
+          return { ...p, category: cat };
+        });
+        setProducts(sortProductsAscending(enriched));
+      }
+    } catch (err) {
+      console.error('Error loading products and categories', err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   // Helper to persist categories
@@ -207,11 +217,23 @@ const Products = () => {
     setCategoryMap(newMap);
     if (!activeVersion) return;
     try {
-      await supabase.from('app_settings').upsert({
-        version_id: activeVersion.id,
-        key: `categories_map_${activeVersion.id}`,
-        value: JSON.stringify({ categories: newCats, map: newMap }),
-      }, { onConflict: 'key,version_id' });
+      const { data: existing } = await supabase
+        .from('app_settings')
+        .select('id')
+        .eq('version_id', activeVersion.id)
+        .eq('key', `categories_map_${activeVersion.id}`)
+        .maybeSingle();
+
+      const val = JSON.stringify({ categories: newCats, map: newMap });
+      if (existing) {
+        await supabase.from('app_settings').update({ value: val }).eq('id', existing.id);
+      } else {
+        await supabase.from('app_settings').insert({
+          version_id: activeVersion.id,
+          key: `categories_map_${activeVersion.id}`,
+          value: val,
+        });
+      }
     } catch (e) {
       console.error('Failed to save category map', e);
     }
