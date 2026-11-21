@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS public.products (
   code TEXT NOT NULL,
   name TEXT NOT NULL,
   description TEXT,
+  category TEXT,
   price DECIMAL(10,2) NOT NULL DEFAULT 0,
   image_url TEXT,
   stock_quantity INTEGER NOT NULL DEFAULT 0,
@@ -58,6 +59,7 @@ CREATE TABLE IF NOT EXISTS public.products (
 );
 CREATE INDEX IF NOT EXISTS idx_products_version ON public.products(version_id);
 CREATE INDEX IF NOT EXISTS idx_products_code ON public.products(code);
+CREATE INDEX IF NOT EXISTS idx_products_category ON public.products(category);
 
 -- 5. CUSTOMERS TABLE
 CREATE TABLE IF NOT EXISTS public.customers (

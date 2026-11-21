@@ -1,0 +1,2810 @@
+[
+  {
+    "code": "77101001",
+    "name": "جاكيت اولادى وسط كحلى /158/1",
+    "description": "780/5",
+    "price": 780,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77101002",
+    "name": "جاكيت اولادى وسط اخضر/158/2",
+    "description": "780/5",
+    "price": 780,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77102001",
+    "name": "جاكيت بناتى فرو بيبي اوف وايت 101/1",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77102002",
+    "name": "جاكيت بناتى فرو بيبي بيج فاتح 101/2",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77102003",
+    "name": "جاكيت بناتى فرو بيبي بيج غامق 101/3",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77102004",
+    "name": "جاكيت بناتى فرو بيبي اسود 101/4",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77103001",
+    "name": "جاكيت بناتى فرو وسط اوف وايت 102/1",
+    "description": "645/5",
+    "price": 645,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77103002",
+    "name": "جاكيت بناتى فرو وسط بيج فاتح  102/2",
+    "description": "645/5",
+    "price": 645,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77103003",
+    "name": "جاكيت بناتى فرو وسط بيج غامق 102/3",
+    "description": "645/5",
+    "price": 645,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77103004",
+    "name": "جاكيت بناتى فرو وسط اسود 102/4",
+    "description": "645/5",
+    "price": 645,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77104001",
+    "name": "فيست كت بناتى وسط مسطردة /110/1",
+    "description": "585/6",
+    "price": 585,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77104002",
+    "name": "فيست كت بناتى وسط بنى/110/2",
+    "description": "585/6",
+    "price": 585,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77105",
+    "name": "جاكيت بناتى بيبي ورود /162",
+    "description": "895/4",
+    "price": 895,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77106",
+    "name": "جاكيت بناتى وسط اسود /127",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77107",
+    "name": "جاكيت ولادى بيبي الوان",
+    "description": "870/4",
+    "price": 870,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77108",
+    "name": "جاكيت بناتى وسط كيتى/111",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77109",
+    "name": "جاكيت ولادى وسط احمر /227",
+    "description": "985/5",
+    "price": 985,
+    "stock_quantity": 5,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77112",
+    "name": "جاكيت بناتى  بيبي موف زراير/128",
+    "description": "790/4",
+    "price": 790,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77113",
+    "name": "جاكيت بناتى وسط  بيج / 117",
+    "description": "790/5",
+    "price": 790,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77115001",
+    "name": "جاكيت بناتى وسط فرو مضلع بيج/163/1",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77115002",
+    "name": "جاكيت بناتى وسط فرو مضلع حديدى/163/2",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77115003",
+    "name": "جاكيت بناتى وسط فرو مضلع روز/163/3",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77116",
+    "name": "جاكيت بيبي ميكى اسود/161",
+    "description": "885/4",
+    "price": 885,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77117",
+    "name": "جاكيت بناتى بيبي بينك/ 116",
+    "description": "695/4",
+    "price": 695,
+    "stock_quantity": 12,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77118",
+    "name": "جاكيت بناتى بيبى تايجر /174",
+    "description": "735/4",
+    "price": 735,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77119",
+    "name": "جاكيت بناتى وسط تايداي/112",
+    "description": "850/5",
+    "price": 850,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77120",
+    "name": "جاكيت بناتى وسط تايجر كشمير /209",
+    "description": "870/6",
+    "price": 870,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77121001",
+    "name": "جاكيت ولادى وسط جينز اسود سوسته268/1",
+    "description": "675/5",
+    "price": 675,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77121002",
+    "name": "جاكيت ولادى وسط جينز بنى سوسته268/2",
+    "description": "675/5",
+    "price": 675,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77122",
+    "name": "جاكيت ولادى وسط كحلى سوسته/269",
+    "description": "650/6",
+    "price": 650,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77123",
+    "name": "جاكيت ولادى بيبي اخضر 264",
+    "description": "850/4",
+    "price": 850,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77124",
+    "name": "جاكيت بناتى وسط فرو خشن ستيتش 185",
+    "description": "630/6",
+    "price": 630,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77125001",
+    "name": "جاكيت بناتى وسط ليمونى/159/1",
+    "description": "885/6",
+    "price": 885,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77125002",
+    "name": "جاكيت بناتى وسط بينك /159/2",
+    "description": "885/6",
+    "price": 885,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77126",
+    "name": "جاكيت ولادى وسط دبل فيس /188",
+    "description": "1350/6",
+    "price": 1350,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77127",
+    "name": "جاكيت بناتى وسط  ورود/225",
+    "description": "950/5",
+    "price": 950,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77128001",
+    "name": "جاكيت بناتى وسط شمواه بنى /166/1",
+    "description": "865/5",
+    "price": 865,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77128002",
+    "name": "جاكيت بناتى وسط شمواه بيج/166/2",
+    "description": "865/5",
+    "price": 865,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77129",
+    "name": "جاكيت بناتى وسط جلد بنى /226",
+    "description": "855/6",
+    "price": 855,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77130001",
+    "name": "جاكيت بناتى وسط فرو اسود/228/1",
+    "description": "750/5",
+    "price": 750,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77130002",
+    "name": "جاكيت بناتى وسط فرو بيج / 228/2",
+    "description": "750/5",
+    "price": 750,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77131001",
+    "name": "جاكيت بناتى بيبي فرو اوف وايت تطريز/189/1",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": 6,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77131002",
+    "name": "جاكيت بناتى بيبي فرو بنى تطريز/189/2",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77132",
+    "name": "جاكيت ولادى بيبي الوان /122",
+    "description": "895/4",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77133",
+    "name": "جاكيت بناتى وسط بيج ورود/130",
+    "description": "885/5",
+    "price": 885,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77134",
+    "name": "جاكيت ولادى بيبي كحلى /190",
+    "description": "795/4",
+    "price": 795,
+    "stock_quantity": -6,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77136001",
+    "name": "جاكيت وسط جلد مشمع اسود/223/1",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77136002",
+    "name": "جاكيت وسط جلد مشمع بنى/223/2",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77136003",
+    "name": "جاكيت وسط جلد مشمع نبيتى/223/3",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77137001",
+    "name": "جاكيت بيبي موف /224/1",
+    "description": "590/4",
+    "price": 590,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77137002",
+    "name": "جاكيت بيبي اخضر /224/2",
+    "description": "590/4",
+    "price": 590,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77137003",
+    "name": "جاكيت بيبي اورنج /224/3",
+    "description": "590/4",
+    "price": 590,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77137004",
+    "name": "جاكيت بيبي اصفر /224/4",
+    "description": "590/4",
+    "price": 590,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77137005",
+    "name": "جاكيت بيبي بينك /224/5",
+    "description": "590/4",
+    "price": 590,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77138001",
+    "name": "جاكيت بناتى وسط بيج / 129/1",
+    "description": "750/5",
+    "price": 750,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77138002",
+    "name": "جاكيت بناتى وسط مينت/129/2",
+    "description": "750/5",
+    "price": 750,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77139",
+    "name": "جاكيت ولادى بيبي اصفر /222",
+    "description": "650/4",
+    "price": 650,
+    "stock_quantity": 101,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77140",
+    "name": "جاكيت ولادى بيبي مينت/221",
+    "description": "650/4",
+    "price": 650,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77141",
+    "name": "جاكيت بناتى وسط كشمير شمواه 263",
+    "description": "790/5",
+    "price": 790,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77142001",
+    "name": "جاكيت بناتى وسط روز 152/1",
+    "description": "630/5",
+    "price": 630,
+    "stock_quantity": 4,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77142002",
+    "name": "جاكيت بناتى وسط بيج 152/2",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77143",
+    "name": "جاكيت بناتى تايجر وسط  237",
+    "description": "640/5",
+    "price": 640,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77144001",
+    "name": "جاكيت ستان بناتى وسط موف 260/1/ملغى",
+    "description": "350/5",
+    "price": 350,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77144002",
+    "name": "جاكيت ستان بناتى وسط سيمون260/2/ملغى",
+    "description": "350/5",
+    "price": 350,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "77144003",
+    "name": "جاكيت ستان بناتى وسط فيروزى 260/3/ملغى",
+    "description": "350/5",
+    "price": 350,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "772001",
+    "name": "سويت شيرت بناتى من 1 ل5 الوان /81",
+    "description": "450/5",
+    "price": 450,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772002",
+    "name": "سويت شيرت بناتى من 1 ل5 بيج فى اخضر /82",
+    "description": "330/5",
+    "price": 330,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "77200301",
+    "name": "سويت شيرت بناتى من 1ل 5 حديدى 98/1",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "77200302",
+    "name": "سويت شيرت بناتى من 1ل 5 بيج 98/2",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "77200303",
+    "name": "سويت شيرت بناتى من 1ل 5 مينت 98/3",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "77200304",
+    "name": "سويت شيرت بناتى من 1ل 5 اخضر فاتح 98/4",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": -5,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "77200401",
+    "name": "سويت شيرت بناتى من 1 ل5 بنى 84/1",
+    "description": "540/5",
+    "price": 540,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "77200402",
+    "name": "سويت شيرت بناتى من 1 ل5 بيج 84/2",
+    "description": "540/5",
+    "price": 540,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772005001",
+    "name": "سويت شيرت بناتى من 1 ل 5 بيج 83/1",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772005002",
+    "name": "سويت شيرت بناتى من 1 ل 5 كافية 83/2",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772006001",
+    "name": "سويت شيرت بناتى بيبي اوف وايت 77/1",
+    "description": "355/4",
+    "price": 355,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772006002",
+    "name": "سويت شيرت بناتى بيبي فوشيا 77/2",
+    "description": "355/4",
+    "price": 355,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772007001",
+    "name": "سويت شيرت بناتى وسط اوف وايت 78/1",
+    "description": "375/5",
+    "price": 375,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772007002",
+    "name": "سويت شيرت بناتى وسط فوشيا 78/2",
+    "description": "375/5",
+    "price": 375,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772008",
+    "name": "سويت شيرت بناتى بيبي بيج فيونكة /79",
+    "description": "395/4",
+    "price": 395,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772009",
+    "name": "سويت شيرت بناتى وسط بيج فيونكة /80",
+    "description": "445/5",
+    "price": 445,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772010001",
+    "name": "سويت شيرت ولادى وسط بنى شيكولاتة 96/1",
+    "description": "495/5",
+    "price": 495,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772010002",
+    "name": "سويت شيرت ولادى وسط اوف وايت 96/2",
+    "description": "495/5",
+    "price": 495,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772010003",
+    "name": "سويت شيرت ولادى وسط لبنى 96/3",
+    "description": "495/5",
+    "price": 495,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772010004",
+    "name": "سويت شيرت ولادى وسط كشمير 96/4",
+    "description": "495/5",
+    "price": 495,
+    "stock_quantity": 4,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772011",
+    "name": "سويت سيرت بناتى من1 ل5 موف فيونكة",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772012",
+    "name": "سويت شيرت بناتى بيبي ورده اوف وايت/75",
+    "description": "495/4",
+    "price": 495,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772013",
+    "name": "سويت شيرت بناتى وسط ورده اوف وايت /76",
+    "description": "511/5",
+    "price": 511,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772014",
+    "name": "سويت شيرت بناتى من 1 ل 5 بنى",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772015",
+    "name": "سويت شيرت بناتى بنى ورد كروشيه /90",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772016001",
+    "name": "سويت شيرت اولادى وسط بنى 95/1",
+    "description": "375/5",
+    "price": 375,
+    "stock_quantity": 163,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772016002",
+    "name": "سويت شيرت اولادى وسط  جراى 95/2",
+    "description": "375/5",
+    "price": 375,
+    "stock_quantity": 257,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772017",
+    "name": "سويت شيرت اولادى كمونى /85",
+    "description": "380/5",
+    "price": 380,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772018001",
+    "name": "سويت شيرت بناتى بيبى اوف وايت/126/1",
+    "description": "525/4",
+    "price": 525,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772018002",
+    "name": "سويت شيرت بناتى بيبى كافيه/126/2",
+    "description": "525/4",
+    "price": 525,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772018003",
+    "name": "سويت شيرت بناتى بيبى روز/126/3",
+    "description": "525/4",
+    "price": 525,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772019",
+    "name": "سويت شيرت بناتى بيبى بنى غامق",
+    "description": "0/4",
+    "price": 0,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772020001",
+    "name": "سويت شيرت اولادى وسط زيتى 105/1",
+    "description": "525/5",
+    "price": 525,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772020002",
+    "name": "سويت شيرت اولادى وسط بيج 105/2",
+    "description": "525/5",
+    "price": 525,
+    "stock_quantity": 11,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772020003",
+    "name": "سويت شيرت اولادى وسط بنى 105/3",
+    "description": "525/5",
+    "price": 525,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772021001",
+    "name": "سويت شيرت اولادى وسط حديدى 145/1",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 4,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772021002",
+    "name": "سويت شيرت اولادى وسط كحلى 145/2",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772022",
+    "name": "سويت شيرت بناتى وسط اوف وايت",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 4,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772023001",
+    "name": "سويت شيرت اولادى وسط بنى فولار 138/1",
+    "description": "520/5",
+    "price": 520,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772023002",
+    "name": "سويت شيرت اولادى وسط موف فولار 138/2",
+    "description": "520/5",
+    "price": 520,
+    "stock_quantity": 42,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772024",
+    "name": "سويت شيرت ولادى من 1 ل5 مقلم /142",
+    "description": "435/5",
+    "price": 435,
+    "stock_quantity": 81,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772025001",
+    "name": "سويت سيرت ولادى من 1 ل 5 بيج/141/1",
+    "description": "420/5",
+    "price": 420,
+    "stock_quantity": 6,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772025002",
+    "name": "سويت سيرت ولادى من 1 ل 5 اسود /141/2",
+    "description": "420/5",
+    "price": 420,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772026",
+    "name": "سويت شيرت  وسط بنى * بيج 186",
+    "description": "485/6",
+    "price": 485,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772027001",
+    "name": "سويت شيرت اولادى وسط بيج /146/1",
+    "description": "445/5",
+    "price": 445,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772027002",
+    "name": "سويت شيرت اولادى وسط جملى /146/2",
+    "description": "445/5",
+    "price": 445,
+    "stock_quantity": 8,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772028001",
+    "name": "سويت شيرت اولادى رمادى بيبى /143/1",
+    "description": "325/5",
+    "price": 325,
+    "stock_quantity": 349,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772028002",
+    "name": "سويت شيرت اولادى حديدى بيبى /143/2",
+    "description": "325/5",
+    "price": 325,
+    "stock_quantity": 339,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772029001",
+    "name": "جاكيت  بناتى بيبى  سوستة  بينك 144/1",
+    "description": "325/4",
+    "price": 325,
+    "stock_quantity": 201,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "772029002",
+    "name": "جاكيت بناتى بيبى سوستة بيج 144/2",
+    "description": "325/4",
+    "price": 325,
+    "stock_quantity": 162,
+    "low_stock_threshold": 10,
+    "category": "جاكيت"
+  },
+  {
+    "code": "772030001",
+    "name": "سويت شيرت ولادى من 1 ل 5 رمادى /140/1",
+    "description": "420/5",
+    "price": 420,
+    "stock_quantity": -12,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772030002",
+    "name": "سويت شيرت ولادى من 1 ل 5 بيج/140/2",
+    "description": "420/5",
+    "price": 420,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772031001",
+    "name": "سويت شيرت بناتى بيبي لولى بينك/131/1",
+    "description": "420/4",
+    "price": 420,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772031002",
+    "name": "سويت شيرت بناتى بيبي لولى بيج/131/2",
+    "description": "420/4",
+    "price": 420,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772031003",
+    "name": "سويت شيرت بناتى بيبي لولى بنى/131/3",
+    "description": "420/4",
+    "price": 420,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772032001",
+    "name": "سويت شيرت بناتى وسط لولى بينك/132/1",
+    "description": "445/6",
+    "price": 445,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772032002",
+    "name": "سويت شيرت بناتى وسط لولى بيج/132/2",
+    "description": "445/6",
+    "price": 445,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772032003",
+    "name": "سويت شيرت بناتى وسط لولى بنى/132/3",
+    "description": "445/6",
+    "price": 445,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772033",
+    "name": "سويت شيرت ولادى بيبي ابيض/207",
+    "description": "330/4",
+    "price": 330,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772034",
+    "name": "سويت شيرت ولادى بيبي بيج / 199",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": 5,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772035",
+    "name": "سويت شيرت ولادى وسط رمادى /265",
+    "description": "485/6",
+    "price": 485,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772036",
+    "name": "سويت شيرت ولادى محير رمادى /266",
+    "description": "495/4",
+    "price": 495,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772037",
+    "name": "سويت شيرت بناتى محير رمادى /173",
+    "description": "445/4",
+    "price": 445,
+    "stock_quantity": 18,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772038",
+    "name": "سويت شيرت ولادى وسط بنى /202",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772039",
+    "name": "سويت شيرت وسط بيج /195",
+    "description": "420/6",
+    "price": 420,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772040",
+    "name": "سويت شيرت ولادى بيبي رمادى فاتح  217",
+    "description": "325/4",
+    "price": 325,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772041",
+    "name": "سويت شيرت بناتى وسط اسود لولى /133",
+    "description": "395/6",
+    "price": 395,
+    "stock_quantity": 65,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772042",
+    "name": "سويت شيرت بناتى وسط ابيض 213",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772043",
+    "name": "سويت شيرت بناتى محير ابيض 214",
+    "description": "395/4",
+    "price": 395,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772046",
+    "name": "سويت شيرت ولادى بيبي رمادى 210",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772047",
+    "name": "سويت شيرت ولادى وسط رمادى 211",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772048",
+    "name": "سويت شيرت ولادى بيبى ابيض* احمر/197",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772049",
+    "name": "سويت شيرت ولادى وسط ابيض* احمر/198",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772050",
+    "name": "سويت شيرت ولادى بيبي كحلى /124",
+    "description": "355/4",
+    "price": 355,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772051",
+    "name": "سويت شيرت ولادى وسط كحلى /125",
+    "description": "365/6",
+    "price": 365,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772052001",
+    "name": "سويت شيرت بناتى بيبي فرو خشن بيج/118/1",
+    "description": "420/4",
+    "price": 420,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772052002",
+    "name": "سويت شيرت بناتى بيبي فرو خشن بنى/118/2",
+    "description": "420/4",
+    "price": 420,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772053",
+    "name": "سويت شيرت بناتى وسط بينك /172",
+    "description": "325/5",
+    "price": 325,
+    "stock_quantity": 20,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772054",
+    "name": "سويت شيرت بناتى وسط رمادى فيونكات /136",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772055",
+    "name": "سويت شيرت بناتى بيبي كيتى بيج/121",
+    "description": "480/4",
+    "price": 480,
+    "stock_quantity": 175,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772056001",
+    "name": "سويت شيرت ولادى وسط رمادى /193/1",
+    "description": "420/6",
+    "price": 420,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772056002",
+    "name": "سويت شيرت ولادى وسط بنى/193/2",
+    "description": "420/6",
+    "price": 420,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772057001",
+    "name": "سويت شيرت ولادى وسط اصفر/191/1",
+    "description": "365/6",
+    "price": 365,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772057002",
+    "name": "سويت شيرت ولادى وسط بينك/191/2",
+    "description": "365/6",
+    "price": 365,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772058001",
+    "name": "سويت شيرت بناتى وسط اسود 215/1",
+    "description": "395/6",
+    "price": 395,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772059001",
+    "name": "سويت شيرت بناتى وسط اسود/168/1",
+    "description": "395/6",
+    "price": 395,
+    "stock_quantity": 174,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772059002",
+    "name": "سويت شيرت بناتى وسط ازرق/168/2",
+    "description": "395/6",
+    "price": 395,
+    "stock_quantity": -6,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772060001",
+    "name": "سويت شيرت بناتى محير اسود/169/1",
+    "description": "425/4",
+    "price": 425,
+    "stock_quantity": 102,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772060002",
+    "name": "سويت شيرت بناتى محير ازرق/169/2",
+    "description": "425/4",
+    "price": 425,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772061001",
+    "name": "سويت شيرت بناتى وسط بنى فيونكه/170/1",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772062001",
+    "name": "سويت شيرت بناتى وسط روز/167/1",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 14,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772062002",
+    "name": "سويت شيرت بناتى وسط اوف وايت /167/2",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772063001",
+    "name": "سويت شيرت بناتى وسط نجمه بينك 212/1",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": 4,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772063002",
+    "name": "سويت شيرت بناتى وسط نجمه انديجو 212/2",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772064001",
+    "name": "سويت شيرت بناتى وسط بينك ورد/176/1",
+    "description": "395/6",
+    "price": 395,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772064002",
+    "name": "سويت شيرت بناتى وسط انديجو ورد/176/2",
+    "description": "395/6",
+    "price": 395,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772065",
+    "name": "سويت شيرت ولادى وسط رمادى 218",
+    "description": "345/5",
+    "price": 345,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772066",
+    "name": "سويت شيرت بناتى بيبي بينك /171",
+    "description": "295/4",
+    "price": 295,
+    "stock_quantity": 19,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772067001",
+    "name": "سويت شيرت بناتى وسط رمادى غامق /137/1",
+    "description": "365/6",
+    "price": 365,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772067002",
+    "name": "سويت شيرت بناتى وسط بنى/137/2",
+    "description": "365/6",
+    "price": 365,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772068001",
+    "name": "سويت شيرت بناتى بيبي بيج/134/1",
+    "description": "310/4",
+    "price": 310,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772068002",
+    "name": "سويت شيرت بناتى بيبي فوشيا/134/2",
+    "description": "310/4",
+    "price": 310,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772069001",
+    "name": "سويت شيرت بناتى وسط بيج قلب /135/1",
+    "description": "330/5",
+    "price": 330,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772069002",
+    "name": "سويت شيرت بناتى وسط فوشيا قلب /135/2",
+    "description": "330/5",
+    "price": 330,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772070",
+    "name": "سويت شيرت بناتى بيبي بيج بادج قلب/119",
+    "description": "420/4",
+    "price": 420,
+    "stock_quantity": 4,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772071",
+    "name": "سويت شيرت بناتى وسط اسود استرس/175",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": 281,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772072001",
+    "name": "سويت شيرت ولادى وسط اخضر/151/1",
+    "description": "420/5",
+    "price": 420,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772072002",
+    "name": "سويت شيرت ولادى وسط احمر/151/2",
+    "description": "420/5",
+    "price": 420,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772073",
+    "name": "سويت شيرت ولادى من 1 ل5 اوف وايت/154",
+    "description": "360/5",
+    "price": 360,
+    "stock_quantity": 336,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772074",
+    "name": "سويت شيرت ولادى وسط حديدى لياقه /155",
+    "description": "495/6",
+    "price": 495,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772075001",
+    "name": "سويت شيرت ولادى وسط اسود /156/1",
+    "description": "465/5",
+    "price": 465,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772075002",
+    "name": "سويت شيرت ولادى وسط  ابيض/156/2",
+    "description": "465/5",
+    "price": 465,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772077",
+    "name": "سويت شيرت ولادى وسط ابيض تطريز/ملغى178",
+    "description": "345/5",
+    "price": 345,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772078001",
+    "name": "سويت شيرت ولادى محير اصفر /192/1",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772078002",
+    "name": "سويت شيرت ولادى محير بينك /192/2",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772079001",
+    "name": "سويت شيرت ولادى محير رمادى /194/1",
+    "description": "445/4",
+    "price": 445,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772079002",
+    "name": "سويت شيرت ولادى محير بنى /194/2",
+    "description": "445/4",
+    "price": 445,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772080",
+    "name": "سويت شيرت ولادى محير بيج / 196",
+    "description": "445/4",
+    "price": 445,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772081",
+    "name": "سويت شيرت ولادى بيج وسط /200",
+    "description": "395/5",
+    "price": 395,
+    "stock_quantity": 51,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772082001",
+    "name": "سويت شيرت بناتى بيبي بينك / 201/1",
+    "description": "355/4",
+    "price": 355,
+    "stock_quantity": 45,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772082002",
+    "name": "سويت شيرت بناتى بيبي اوف وايت/ 201/2",
+    "description": "355/4",
+    "price": 355,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772085001",
+    "name": "سويت شيرت بناتى محير رمادى غامق /205/1",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772085002",
+    "name": "سويت شيرت بناتى محير بنى /205/2",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772086",
+    "name": "سويت شيرت بناتى محير رمادى فيونكات/206",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772087",
+    "name": "سويت شيرت ولادى وسط ابيض / 208/ ملغى",
+    "description": "335/5",
+    "price": 335,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772089",
+    "name": "سويت شيرت ولادى وسط بيج*مسطردة/256",
+    "description": "375/5",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772090",
+    "name": "سويت شيرت ولادى محير بيج*مسطردة/257",
+    "description": "395/4",
+    "price": 395,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772091",
+    "name": "سويت شيرت بناتى وسط بيج مطرز /258",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772092",
+    "name": "سويت شيرت بناتى محير بيج مطرز /259",
+    "description": "385/4",
+    "price": 385,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772095",
+    "name": "سويت شيرت لطقم 77705",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772096001",
+    "name": "سويت شيرت اولادى وسط ابيض* بنى 277/1",
+    "description": "330/5",
+    "price": 330,
+    "stock_quantity": 359,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772096002",
+    "name": "سويت شيرت اولادى وسط ابيض* رمادى277/2",
+    "description": "330/5",
+    "price": 330,
+    "stock_quantity": 356,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "772099",
+    "name": "سويت شيرت بنى وسط بناتى ورد",
+    "description": "330/5",
+    "price": 330,
+    "stock_quantity": 148,
+    "low_stock_threshold": 10,
+    "category": "سويت شيرت"
+  },
+  {
+    "code": "774001",
+    "name": "قميص ولادى وسط كم بيج /87",
+    "description": "370/5",
+    "price": 370,
+    "stock_quantity": 76,
+    "low_stock_threshold": 10,
+    "category": "قميص"
+  },
+  {
+    "code": "7750101",
+    "name": "بنطلون بناتى من 1 ل 5 كافيه 100/1",
+    "description": "199/5",
+    "price": 199,
+    "stock_quantity": 130,
+    "low_stock_threshold": 10,
+    "category": "بنطلون"
+  },
+  {
+    "code": "7750102",
+    "name": "بنطلون بناتى من 1 ل 5 بيج 100/2",
+    "description": "199/5",
+    "price": 199,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بنطلون"
+  },
+  {
+    "code": "7750103",
+    "name": "بنطلون بناتى من 1 ل 5 بنى 100/3",
+    "description": "199/5",
+    "price": 199,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بنطلون"
+  },
+  {
+    "code": "7750104",
+    "name": "بنطلون بناتى من 1 ل 5 موف 100/4",
+    "description": "199/5",
+    "price": 199,
+    "stock_quantity": 11,
+    "low_stock_threshold": 10,
+    "category": "بنطلون"
+  },
+  {
+    "code": "7750201",
+    "name": "بنطلون بناتى وسط ابيض 89/1",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 285,
+    "low_stock_threshold": 10,
+    "category": "بنطلون"
+  },
+  {
+    "code": "7750202",
+    "name": "بنطلون بناتى وسط اسود 89/2",
+    "description": "385/5",
+    "price": 385,
+    "stock_quantity": 50,
+    "low_stock_threshold": 10,
+    "category": "بنطلون"
+  },
+  {
+    "code": "77601",
+    "name": "بلوزة شتوى بيبى ركامة بيج /86",
+    "description": "520/5",
+    "price": 520,
+    "stock_quantity": 36,
+    "low_stock_threshold": 10,
+    "category": "بلوزة"
+  },
+  {
+    "code": "77602",
+    "name": "بدى وسط لجاكت 77142001",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": -4,
+    "low_stock_threshold": 10,
+    "category": "بلوزة"
+  },
+  {
+    "code": "77701001",
+    "name": "طقم بناتى وسط بيج غامق 94/1",
+    "description": "820/5",
+    "price": 820,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77701002",
+    "name": "طقم بناتى وسط بنى 94/2",
+    "description": "820/5",
+    "price": 820,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77702001",
+    "name": "طقم بناتى كبير زيتى 104/1",
+    "description": "950/5",
+    "price": 950,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77702002",
+    "name": "طقم بناتى كبير حديدي 104/2",
+    "description": "950/5",
+    "price": 950,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77703001",
+    "name": "طقم بناتى وسط بيج /150/1",
+    "description": "720/5",
+    "price": 720,
+    "stock_quantity": -3,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77703002",
+    "name": "طقم بناتى وسط اسود/150/2",
+    "description": "720/5",
+    "price": 720,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77704",
+    "name": "طقم بناتى من 1 ل 5 4 وردات كروشيه 270",
+    "description": "595/5",
+    "price": 595,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77705",
+    "name": "طقم بناتى وسط جيب جلداسود/182",
+    "description": "695/5",
+    "price": 695,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77706001",
+    "name": "طقم بناتى وسط كافية/ 165/1",
+    "description": "770/5",
+    "price": 770,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77706003",
+    "name": "طقم بناتى وسط روز/165/3",
+    "description": "770/5",
+    "price": 770,
+    "stock_quantity": 6,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77706004",
+    "name": "طقم بناتى وسط حديدى/165/4",
+    "description": "770/5",
+    "price": 770,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77707",
+    "name": "طقم بناتى وسط سيمون فاتح/ 139",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77708001",
+    "name": "طقم بناتى تريكو وسط اسود /242/1",
+    "description": "795/5",
+    "price": 795,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77708002",
+    "name": "طقم بناتى تريكو وسط بيج/242/2",
+    "description": "795/5",
+    "price": 795,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77709001",
+    "name": "طقم بناتى تريكو محير بنى /252/1",
+    "description": "890/4",
+    "price": 890,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77709002",
+    "name": "طقم بناتى تريكو محير بيج /252/2",
+    "description": "890/4",
+    "price": 890,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77710001",
+    "name": "طقم بناتى تريكو وسط كافية/253/1",
+    "description": "810/5",
+    "price": 810,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77710002",
+    "name": "طقم بناتى تريكو وسط اسود/253/2",
+    "description": "810/5",
+    "price": 810,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77711001",
+    "name": "طقم بناتى تريكو محير كافية /254/1",
+    "description": "855/4",
+    "price": 855,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77711002",
+    "name": "طقم بناتى تريكو محيراسود/254/2",
+    "description": "855/4",
+    "price": 855,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77712001",
+    "name": "طقم بناتى تريكو جيب وسط اسود/255/1",
+    "description": "845/5",
+    "price": 845,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77712002",
+    "name": "طقم بناتى تريكو جيب وسط سكرى/255/2",
+    "description": "845/5",
+    "price": 845,
+    "stock_quantity": 24,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77713",
+    "name": "طقم بناتى بنى 3 وردات /93",
+    "description": "595/5",
+    "price": 595,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77714",
+    "name": "طقم بناتى موف فيونكات /91",
+    "description": "625/5",
+    "price": 625,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77715",
+    "name": "طقم بناتى بنى فاتح قلب /92",
+    "description": "595/5",
+    "price": 595,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77716001",
+    "name": "طقم بناتى وسط روز/147/1",
+    "description": "720/5",
+    "price": 720,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77716002",
+    "name": "طقم بناتى وسط  حديدى/147/2",
+    "description": "720/5",
+    "price": 720,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77716003",
+    "name": "طقم بناتى وسط  بيج/147/3",
+    "description": "720/5",
+    "price": 720,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77717",
+    "name": "طقم بناتى وسط رمادى /103",
+    "description": "790/5",
+    "price": 790,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77718",
+    "name": "طقم بناتى وسط 3 قطع كروب توب/179",
+    "description": "950/6",
+    "price": 950,
+    "stock_quantity": 3,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77719",
+    "name": "طقم بناتى وسط اسود فضى 187",
+    "description": "750/5",
+    "price": 750,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77720",
+    "name": "طقم بناتى وسط فيونكات/107",
+    "description": "785/6",
+    "price": 785,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77721001",
+    "name": "طقم بناتى وسط بيج 106/1",
+    "description": "795/5",
+    "price": 795,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77721002",
+    "name": "طقم بناتى وسط بنى 106/2",
+    "description": "795/5",
+    "price": 795,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77722001",
+    "name": "طقم بناتى وسط بينك/113/1",
+    "description": "875/5",
+    "price": 875,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77722002",
+    "name": "طقم بناتى وسط اسود/113/2",
+    "description": "875/5",
+    "price": 875,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77723",
+    "name": "طقم بناتى وسط جيب جلد نبيتى /99",
+    "description": "765/5",
+    "price": 765,
+    "stock_quantity": 6,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77724001",
+    "name": "طقم بناتى وسط بينك /164/1",
+    "description": "850/5",
+    "price": 850,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77724002",
+    "name": "طقم بناتى وسط اوف وايت/164/2",
+    "description": "850/5",
+    "price": 850,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77725001",
+    "name": "طقم بناتى وسط بينك 148/1",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77725002",
+    "name": "طقم بناتى وسط بيج 148/2",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77726001",
+    "name": "طقم بناتى وسط بينك 149/1",
+    "description": "890/5",
+    "price": 890,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77726002",
+    "name": "طقم بناتى وسط بيج 149/2",
+    "description": "890/5",
+    "price": 890,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77727001",
+    "name": "طقم بناتى وسط بنى 153/1",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77727002",
+    "name": "طقم بناتى وسط اسود 153/2",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77727003",
+    "name": "طقم بناتى وسط اوف وايت 153/3",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77727004",
+    "name": "طقم بناتى وسط جملى 153/4",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77728001",
+    "name": "طقم بناتى وسط كحلى نص سوستة 157/1",
+    "description": "810/6",
+    "price": 810,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77728002",
+    "name": "طقم بناتى وسط رمادى نص سوستة 157/2",
+    "description": "810/6",
+    "price": 810,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77729001",
+    "name": "طقم بناتى وسط موف / 180/1",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77729002",
+    "name": "طقم بناتى وسط اخضر تفاحى/ 180/2",
+    "description": "895/5",
+    "price": 895,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77730001",
+    "name": "طقم بناتى وسط حديدى زراير/181/1",
+    "description": "890/5",
+    "price": 890,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77730002",
+    "name": "طقم بناتى وسط رمادى زراير/181/2",
+    "description": "890/5",
+    "price": 890,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77730003",
+    "name": "طقم بناتى وسط سكرى زراير/181/3",
+    "description": "890/5",
+    "price": 890,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77731001",
+    "name": "طقم بناتى وسط كمونى 234/1",
+    "description": "840/6",
+    "price": 840,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77731002",
+    "name": "طقم بناتى وسط بترولى 234/2",
+    "description": "840/6",
+    "price": 840,
+    "stock_quantity": 5,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77733",
+    "name": "طقم بناتى من 1 ل 5 جيب زيتى / 275",
+    "description": "690/5",
+    "price": 690,
+    "stock_quantity": 159,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77734001",
+    "name": "طقم بناتى بيج من 1 ل5 جيب زيتى 276/1",
+    "description": "690/5",
+    "price": 690,
+    "stock_quantity": 108,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77734002",
+    "name": "طقم بناتى كافيه من 1 ل5 جيب بيج 276/2",
+    "description": "690/5",
+    "price": 690,
+    "stock_quantity": 142,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77735",
+    "name": "طقم بناتى بيبى بينك * جيب رمادى /274",
+    "description": "575/3",
+    "price": 575,
+    "stock_quantity": 32,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77736",
+    "name": "طقم بناتى وسط  بينك * جيب رمادى /273",
+    "description": "595/6",
+    "price": 595,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77742001",
+    "name": "طقم بناتى وسط بيج*اسود",
+    "description": "625/5",
+    "price": 625,
+    "stock_quantity": 150,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77742002",
+    "name": "طقم بناتى وسط اوف وايت *اسود",
+    "description": "625/5",
+    "price": 625,
+    "stock_quantity": 387,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77747",
+    "name": "طقم بناتى وسط بنى 5 وردات + جيب هافان/278",
+    "description": "650/5",
+    "price": 650,
+    "stock_quantity": 190,
+    "low_stock_threshold": 10,
+    "category": "طقم"
+  },
+  {
+    "code": "77801001",
+    "name": "بدى بناتى وسط بنى 97/1",
+    "description": "199/6",
+    "price": 199,
+    "stock_quantity": 103,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77801002",
+    "name": "بدى بناتى وسط اسود 97/2",
+    "description": "199/6",
+    "price": 199,
+    "stock_quantity": 138,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77801003",
+    "name": "بدى بناتى وسط بيج 97/3",
+    "description": "199/6",
+    "price": 199,
+    "stock_quantity": 34,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77801004",
+    "name": "بدى بناتى وسط روز 97/4",
+    "description": "199/6",
+    "price": 199,
+    "stock_quantity": 127,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77802",
+    "name": "بلوفر ولادى وسط اوف وايت /244",
+    "description": "525/6",
+    "price": 525,
+    "stock_quantity": 1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77803",
+    "name": "بلوفر بناتى مينى وسط زراير بيج /243",
+    "description": "585/6",
+    "price": 585,
+    "stock_quantity": 77,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77804",
+    "name": "بلوفر ولادى بيبي  بيج /240",
+    "description": "490/4",
+    "price": 490,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77805",
+    "name": "بلوفر ولادى وسط بيج /241",
+    "description": "550/6",
+    "price": 550,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77806",
+    "name": "بلوفر بناتى بيبي سوسته مقلم/235",
+    "description": "585/4",
+    "price": 585,
+    "stock_quantity": 131,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77807001",
+    "name": "بلوفر بناتى وسط بيج قلب /232/1",
+    "description": "555/5",
+    "price": 555,
+    "stock_quantity": -4,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77808001",
+    "name": "بلوفر بناتى محير بيج قلب /233/1",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": 126,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77808002",
+    "name": "بلوفر بناتى محير بنى قلب /233/2",
+    "description": "595/4",
+    "price": 595,
+    "stock_quantity": 57,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77809",
+    "name": "بلوفر ولادى وسط مقلم بيج * بنى/249",
+    "description": "540/5",
+    "price": 540,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77810",
+    "name": "بلوفر ولادى بيبي مقلم رقم /247",
+    "description": "495/4",
+    "price": 495,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77811",
+    "name": "بلوفر ولادى وسط مقلم رقم /248",
+    "description": "550/5",
+    "price": 550,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77812",
+    "name": "بلوفر بناتى بيبى زراير بيج مطرز ورد/245",
+    "description": "550/4",
+    "price": 550,
+    "stock_quantity": 52,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77813",
+    "name": "بلوفر بناتى وسط زراير بيج مطرز ورد/246",
+    "description": "610/5",
+    "price": 610,
+    "stock_quantity": 50,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77814",
+    "name": "بلوفر ولادى من 18 ش  ل 5 س مقلم رقم/250",
+    "description": "530/5",
+    "price": 530,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77815",
+    "name": "بلوفر بناتى وسط احمر /251",
+    "description": "490/5",
+    "price": 490,
+    "stock_quantity": 162,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77816",
+    "name": "بلوفر بناتى بيبي كيتى بيج/230",
+    "description": "550/4",
+    "price": 550,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77817",
+    "name": "بلوفر بناتى  وسط  كيتى بيج/231",
+    "description": "590/5",
+    "price": 590,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77818",
+    "name": "بلوفر بناتى رمادى وسط سوسته /239",
+    "description": "650/5",
+    "price": 650,
+    "stock_quantity": 205,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77819",
+    "name": "بلوفر بناتى  وسط سوسته مقلم /236",
+    "description": "595/5",
+    "price": 595,
+    "stock_quantity": 145,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77820",
+    "name": "بلوفر بناتى رمادى بيبي سوسته/238",
+    "description": "590/4",
+    "price": 590,
+    "stock_quantity": 55,
+    "low_stock_threshold": 10,
+    "category": "بلوفر"
+  },
+  {
+    "code": "77901001",
+    "name": "جيب بناتى وسط موف غامق 160/1",
+    "description": "340/5",
+    "price": 340,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77901002",
+    "name": "جيب بناتى وسط اسود 160/2",
+    "description": "340/5",
+    "price": 340,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77901003",
+    "name": "جيب بناتى وسط بنى 160/3",
+    "description": "340/5",
+    "price": 340,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77902001",
+    "name": "جيب جلد وسط جملى /88",
+    "description": "285/5",
+    "price": 285,
+    "stock_quantity": 42,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77902002",
+    "name": "جيب جلد وسط نبيتى",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 12,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77902003",
+    "name": "جيب طقم  جلد وسط اسود",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 31,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77904",
+    "name": "جيب وسط رمادى غامق / 115",
+    "description": "295/6",
+    "price": 295,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77905",
+    "name": "جيب وسط اسود استرس/108",
+    "description": "375/6",
+    "price": 375,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77906001",
+    "name": "جيب وسط كشمير/109/1",
+    "description": "299/6",
+    "price": 299,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77906002",
+    "name": "جيب وسط بنى/109/2",
+    "description": "299/6",
+    "price": 299,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77906003",
+    "name": "جيب وسط نبيتى /109/3",
+    "description": "299/6",
+    "price": 299,
+    "stock_quantity": 2,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77908001",
+    "name": "جيب بناتى وسط حديدى/114/1",
+    "description": "299/6",
+    "price": 299,
+    "stock_quantity": -2,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77908002",
+    "name": "جيب بناتى وسط جملى /114/2",
+    "description": "299/6",
+    "price": 299,
+    "stock_quantity": -1,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77909001",
+    "name": "جيب قطيفة بيبى بيج من 1 ل5",
+    "description": "280/5",
+    "price": 280,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77909002",
+    "name": "جيب قطيفة بيبى زيتى من 1 ل5",
+    "description": "280/5",
+    "price": 280,
+    "stock_quantity": 0,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77910",
+    "name": "جيب وسط ازرق",
+    "description": "0/5",
+    "price": 0,
+    "stock_quantity": 428,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  },
+  {
+    "code": "77911",
+    "name": "جيب بيبى جراى غامق 3مقاسات",
+    "description": "265/3",
+    "price": 265,
+    "stock_quantity": 48,
+    "low_stock_threshold": 10,
+    "category": "جيب"
+  }
+]
