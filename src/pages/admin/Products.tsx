@@ -63,14 +63,10 @@ export const LABEL_PRESETS: LabelPreset[] = [
 ];
 
 export const DEFAULT_CATEGORIES = [
-  'جاكيت',
-  'سويت شيرت',
-  'طقم',
-  'بلوفر',
-  'جيب',
-  'بنطلون',
-  'بلوزة',
-  'قميص',
+  'وسط',
+  'بيبى',
+  'محير',
+  'كبير',
 ];
 
 const sortProductsAscending = (list: Product[]): Product[] => {
@@ -91,19 +87,13 @@ export const getCategoryForProduct = (p: Product, map: Record<string, string>): 
   if (p.code && map[p.code]) return map[p.code];
   if (p.id && map[p.id]) return map[p.id];
   
-  const code = String(p.code || '').trim();
   const name = String(p.name || '').trim();
+  if (name.includes('كبير')) return 'كبير';
+  if (name.includes('بيبى') || name.includes('بيبي')) return 'بيبى';
+  if (name.includes('محير')) return 'محير';
+  if (name.includes('وسط')) return 'وسط';
   
-  if (code.startsWith('771') || name.startsWith('جاكيت')) return 'جاكيت';
-  if (code.startsWith('772') || name.startsWith('سويت شيرت')) return 'سويت شيرت';
-  if (code.startsWith('774') || name.startsWith('قميص')) return 'قميص';
-  if (code.startsWith('775') || name.startsWith('بنطلون')) return 'بنطلون';
-  if (code.startsWith('776') || name.startsWith('بلوزة')) return 'بلوزة';
-  if (code.startsWith('777') || name.startsWith('طقم')) return 'طقم';
-  if (code.startsWith('778') || name.startsWith('بلوفر')) return 'بلوفر';
-  if (code.startsWith('779') || name.startsWith('جيب')) return 'جيب';
-  
-  return 'عام';
+  return 'وسط';
 };
 
 const Products = () => {
@@ -181,7 +171,9 @@ const Products = () => {
       if (data?.value) {
         const parsed = JSON.parse(data.value);
         if (Array.isArray(parsed.categories) && parsed.categories.length > 0) {
-          const mergedCategories = Array.from(new Set([...DEFAULT_CATEGORIES, ...parsed.categories]));
+          const validCategories = parsed.categories.filter((c: string) => !['جاكيت', 'سويت شيرت', 'طقم', 'بلوفر', 'جيب', 'بنطلون', 'بلوزة', 'قميص'].includes(c));
+          const finalCats = validCategories.length > 0 ? validCategories : DEFAULT_CATEGORIES;
+          const mergedCategories = Array.from(new Set([...DEFAULT_CATEGORIES, ...finalCats]));
           setCategories(mergedCategories);
         }
         if (parsed.map && typeof parsed.map === 'object') {
@@ -434,7 +426,7 @@ const Products = () => {
         const descVal = findValue(row, ['السعر/عدد الثري', 'عدد الثري', 'الثري', 'description', 'الوصف', 'وصف']);
         const stockVal = findValue(row, ['الكمية (قطع ليس ثريهات)', 'قطع ليس ثريهات', 'الكمية', 'كمية', 'stock', 'quantity']);
         const thresholdVal = findValue(row, ['حد التنبيه', 'التنبيه', 'تنبيه', 'threshold']);
-        const catVal = findValue(row, ['التصنيف', 'فئة', 'الفئة', 'القسم', 'قسم', 'category', 'Category']);
+        const catVal = findValue(row, ['المقاس', 'مقاس', 'size', 'Size', 'التصنيف', 'فئة', 'الفئة', 'القسم', 'قسم', 'category', 'Category']);
 
         const code = codeVal !== undefined && codeVal !== null ? String(codeVal).trim() : '';
         const name = nameVal !== undefined && nameVal !== null ? String(nameVal).trim() : '';
