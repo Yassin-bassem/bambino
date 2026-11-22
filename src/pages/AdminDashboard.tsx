@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, Outlet, useLocation } from 'react-router-dom';
-import { Package, ShoppingCart, Users, BarChart3, LogOut, Wallet, SearchCode, FileText, Menu, X, Bell, UserCog, Settings, DatabaseBackup, SlidersHorizontal, CalendarDays } from 'lucide-react';
+import { Package, ShoppingCart, Users, BarChart3, LogOut, Wallet, SearchCode, FileText, Menu, X, Bell, UserCog, Settings, DatabaseBackup, SlidersHorizontal, CalendarDays, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import bambinoLogo from '@/assets/bambino-logo.jpg';
 import { VersionProvider } from '@/contexts/VersionContext';
@@ -12,6 +12,7 @@ import { maybeAutoDownloadBackup } from '@/lib/autoBackup';
 const allNavItems = [
   { path: '/admin/dashboard', label: 'الإحصائيات', icon: BarChart3, permission: 'stats' },
   { path: '/admin/dashboard/products', label: 'المنتجات', icon: Package, permission: 'products' },
+  { path: '/admin/dashboard/products-analysis', label: 'تحليل المنتجات', icon: TrendingUp, permission: 'products' },
   { path: '/admin/dashboard/orders', label: 'الطلبات', icon: ShoppingCart, permission: 'orders' },
   { path: '/admin/dashboard/customers', label: 'العملاء', icon: Users, permission: 'customers' },
   { path: '/admin/dashboard/daily-customers', label: 'عملاء اليوم', icon: CalendarDays, permission: 'customers' },
