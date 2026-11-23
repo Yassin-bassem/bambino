@@ -14,9 +14,21 @@ const envKeys = [
   'VITE_TELEGRAM_CHAT_ID'
 ];
 
+// Read existing .env if present to preserve local settings
+const existingEnv = {};
+if (fs.existsSync('.env')) {
+  const lines = fs.readFileSync('.env', 'utf8').split('\n');
+  lines.forEach(line => {
+    const match = line.match(/^([^=]+)=(.*)$/);
+    if (match) {
+      existingEnv[match[1].trim()] = match[2].trim().replace(/^["']|["']$/g, '');
+    }
+  });
+}
+
 let envContent = '';
 envKeys.forEach(key => {
-  const val = process.env[key] || defaults[key];
+  const val = process.env[key] || existingEnv[key] || defaults[key];
   if (val) {
     envContent += `${key}="${val}"\n`;
   }

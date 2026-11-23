@@ -647,22 +647,28 @@ const AiAssistant = () => {
     ];
 
     try {
+      let versionId = localStorage.getItem('bambino_active_version_id') || localStorage.getItem('babyland_active_version_id');
+      if (!versionId) {
+        const { data: v } = await supabase.from('versions').select('id').eq('is_active', true).maybeSingle();
+        versionId = v?.id;
+      }
+
       for (const item of settingsToSave) {
         const { data } = await supabase
           .from('app_settings')
-          .select('key')
+          .select('id, key')
           .eq('key', item.key)
           .maybeSingle();
 
         if (data) {
           await supabase
             .from('app_settings')
-            .update({ value: item.value })
-            .eq('key', item.key);
+            .update({ value: item.value, updated_at: new Date().toISOString() })
+            .eq('id', data.id);
         } else {
           await supabase
             .from('app_settings')
-            .insert({ key: item.key, value: item.value });
+            .insert({ key: item.key, value: item.value, version_id: versionId });
         }
       }
 
@@ -1198,17 +1204,17 @@ ${ROUTES}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="teleChatId">Telegram Chat ID (معرف الشات/القناة)</Label>
+              <Label htmlFor="teleChatId">Telegram Chat IDs (معرفات الشات / القناة)</Label>
               <Input
                 id="teleChatId"
                 type="text"
-                placeholder="-100123456789"
+                placeholder="1388576383, 357844528"
                 value={telegramChatIdInput}
                 onChange={(e) => setTelegramChatIdInput(e.target.value)}
                 dir="ltr"
               />
               <p className="text-xs text-muted-foreground">
-                يتم إرسال إشعارات الأوردرات الجديدة ونقص المخزون تلقائياً إلى شات/قناة تليجرام المحددة.
+                يمكن إدخال أكثر من معرف شات مفصولين بفاصلة لإرسال إشعارات الأوردرات الجديدة ونقص المخزون لجميع الشاتات.
               </p>
             </div>
 

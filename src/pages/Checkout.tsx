@@ -210,18 +210,23 @@ const sendTelegramNotificationClientSide = async (payload: any) => {
       .in('key', ['telegram_bot_token', 'telegram_chat_id']);
     
     const botToken = settings?.find(s => s.key === 'telegram_bot_token')?.value || import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-    const chatId = settings?.find(s => s.key === 'telegram_chat_id')?.value || import.meta.env.VITE_TELEGRAM_CHAT_ID;
+    const rawChatId = settings?.find(s => s.key === 'telegram_chat_id')?.value || import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
-    if (!botToken || !chatId) {
+    // Parse one or multiple chat IDs (comma, semicolon, space, or newline separated)
+    const chatIds = typeof rawChatId === 'string'
+      ? rawChatId.split(/[\s,;]+/).map(id => id.trim()).filter(Boolean)
+      : rawChatId ? [String(rawChatId).trim()] : [];
+
+    if (!botToken || chatIds.length === 0) {
       console.warn('Telegram notifications not sent: bot token or chat ID is missing.');
       return;
     }
 
     const { orderNumber, branch, customerName, shopName, phone, address, items, subtotal, total, depositAmount, depositMethod, extraInfo, lowStockProducts, staffName } = payload;
 
-    const escapeMarkdown = (text: string): string => {
-      if (!text) return '';
-      return text.replace(/([_*\[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
+    const escapeMarkdown = (text: any): string => {
+      if (text === null || text === undefined) return '';
+      return String(text).replace(/([_*\[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
     };
 
     // Build message
@@ -244,19 +249,19 @@ const sendTelegramNotificationClientSide = async (payload: any) => {
       items.forEach((item: any, index: number) => {
         message += `${index + 1}\\. ${escapeMarkdown(item.name)}\n`;
         message += `   الكود: ${escapeMarkdown(item.code)}\n`;
-        message += `   الكمية: ${item.quantity}\n`;
-        message += `   السعر: ${item.price} ج\\.م\n\n`;
+        message += `   الكمية: ${escapeMarkdown(item.quantity)}\n`;
+        message += `   السعر: ${escapeMarkdown(item.price)} ج\\.م\n\n`;
       });
     }
 
     message += `━━━━━━━━━━━━━━━━\n`;
-    message += `💰 *الإجمالي:* ${subtotal} ج\\.م\n`;
+    message += `💰 *الإجمالي:* ${escapeMarkdown(subtotal)} ج\\.م\n`;
     if (depositAmount > 0) {
       const methodLabel = depositMethod === 'instapay' ? 'InstaPay' : 
                          depositMethod === 'vodafone_cash' ? 'فودافون كاش' : 'كاش';
-      message += `💵 *العربون \\(${escapeMarkdown(methodLabel)}\\):* ${depositAmount} ج\\.م\n`;
+      message += `💵 *العربون \\(${escapeMarkdown(methodLabel)}\\):* ${escapeMarkdown(depositAmount)} ج\\.م\n`;
     }
-    message += `✅ *المطلوب:* ${total} ج\\.م`;
+    message += `✅ *المطلوب:* ${escapeMarkdown(total)} ج\\.م`;
 
     // Add low stock alert if any
     if (lowStockProducts && Array.isArray(lowStockProducts) && lowStockProducts.length > 0) {
@@ -269,20 +274,41 @@ const sendTelegramNotificationClientSide = async (payload: any) => {
     }
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const response = await fetch(telegramUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'MarkdownV2',
-      }),
-    });
 
-    if (!response.ok) {
-      const result = await response.json();
-      console.error('Telegram API error:', result);
-    }
+    // Send order details to all configured chat IDs in parallel
+    await Promise.allSettled(
+      chatIds.map(async (chatId) => {
+        try {
+          const response = await fetch(telegramUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: 'MarkdownV2',
+            }),
+          });
+
+          if (!response.ok) {
+            const result = await response.json();
+            console.error(`Telegram API error for chat ${chatId}:`, result);
+
+            // Fallback to plain text if MarkdownV2 formatting had an issue
+            const plainMessage = message.replace(/\\([_*\[\]()~`>#+\-=|{}.!\\])/g, '$1');
+            await fetch(telegramUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: plainMessage,
+              }),
+            });
+          }
+        } catch (targetErr) {
+          console.error(`Error sending Telegram notification to ${chatId}:`, targetErr);
+        }
+      })
+    );
   } catch (error) {
     console.error('Error sending Telegram notification:', error);
   }

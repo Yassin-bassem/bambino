@@ -31,16 +31,20 @@ export const sendStockAlertTelegram = async ({ code, name, stock_quantity }: Sto
       .in('key', ['telegram_bot_token', 'telegram_chat_id']);
 
     const botToken = settings?.find(s => s.key === 'telegram_bot_token')?.value || import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-    const chatId = settings?.find(s => s.key === 'telegram_chat_id')?.value || import.meta.env.VITE_TELEGRAM_CHAT_ID;
+    const rawChatId = settings?.find(s => s.key === 'telegram_chat_id')?.value || import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
-    if (!botToken || !chatId) {
+    const chatIds = typeof rawChatId === 'string'
+      ? rawChatId.split(/[\s,;]+/).map(id => id.trim()).filter(Boolean)
+      : rawChatId ? [String(rawChatId).trim()] : [];
+
+    if (!botToken || chatIds.length === 0) {
       console.warn('Telegram alerts: Bot Token or Chat ID missing.');
       return;
     }
 
-    const escapeMarkdown = (text: string): string => {
-      if (!text) return '';
-      return text.replace(/([_*\[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
+    const escapeMarkdown = (text: any): string => {
+      if (text === null || text === undefined) return '';
+      return String(text).replace(/([_*\[\]()~`>#+\-=|{}.!\\])/g, '\\$1');
     };
 
     let message = '';
@@ -51,17 +55,43 @@ export const sendStockAlertTelegram = async ({ code, name, stock_quantity }: Sto
     }
 
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const res = await fetch(telegramUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'MarkdownV2',
-      }),
-    });
+    let anySuccess = false;
 
-    if (res.ok) {
+    await Promise.allSettled(
+      chatIds.map(async (chatId) => {
+        try {
+          const res = await fetch(telegramUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: 'MarkdownV2',
+            }),
+          });
+
+          if (res.ok) {
+            anySuccess = true;
+          } else {
+            // Fallback to plain text if MarkdownV2 had formatting error
+            const plainText = message.replace(/\\([_*\[\]()~`>#+\-=|{}.!\\])/g, '$1');
+            const fallbackRes = await fetch(telegramUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: plainText,
+              }),
+            });
+            if (fallbackRes.ok) anySuccess = true;
+          }
+        } catch (targetErr) {
+          console.error(`Failed to send stock alert to chat ${chatId}:`, targetErr);
+        }
+      })
+    );
+
+    if (anySuccess) {
       sentAlertsCache.add(cacheKey);
     }
   } catch (err) {
